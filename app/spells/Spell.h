@@ -14,6 +14,6 @@ class Spell {
     public:
         const std::string& getName() const;
         int getValue() const;
-}
+};
 
 #endif //SPELLS_H

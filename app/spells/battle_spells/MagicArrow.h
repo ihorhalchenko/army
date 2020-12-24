@@ -7,6 +7,6 @@
 class MagicArrow : public BattleSpell {
     public:
         MagicArrow();
-}
+};
 
 #endif //MAGICARROW_H

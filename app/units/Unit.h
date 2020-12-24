@@ -13,10 +13,10 @@ class Unit {
         int m_hitPoints;
         int m_hitPointsLimit;
         std::string m_name;
-        IAttack attackStrategy;
+        IAttack* m_attackStrategy;
         void ensureIsAlive();
     protected:
-        Unit(const std::string& name, int hp, int dmg);
+        Unit(const std::string& name, int hp, int dmg, IAttack* attackStrategy);
         ~Unit();
     
     public:
@@ -31,10 +31,6 @@ class Unit {
         virtual void attack(Unit& enemy) = 0;
         virtual void attack(Unit& enemy, BattleSpell bs) = 0;
         void counterAttack(Unit& enemy);
-
-
-
-        setAtackStrategy
 };
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit);

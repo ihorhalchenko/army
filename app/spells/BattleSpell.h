@@ -7,6 +7,6 @@
 class BattleSpell:public Spell {
     protected:
         BattleSpell(const std::string name, int value);
-}
+};
 
 #endif //BATTLESPELL_H
