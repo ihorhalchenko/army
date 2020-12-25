@@ -1,12 +1,12 @@
 #ifndef DEFAULTATTACK_H
 #define DEFAULTATTACK_H
 
+#include "IAttack.h"
+
 class DefaultAttack : public IAttack {
     public:
-        virtual void attack(Unit& attacker, Unit& enemy, Damage& dmg) {
-            enemy.takeDamage(dmg);
-            enemy.counterAttack(attacker);
-        }
+        DefaultAttack();
+        virtual void attack(Unit& attacker, Unit& enemy, Damage* dmg);
 };
 
 #endif //DEFAULTATTACK_H

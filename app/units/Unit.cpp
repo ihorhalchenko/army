@@ -1,7 +1,10 @@
 #include "Unit.h"
 
+Unit::Unit(const std::string& name, int hp, int dmg) 
+: m_name(name), m_hitPoints(hp), m_hitPointsLimit(hp), m_damage(dmg), m_attackStrategy(new DefaultAttack()) {}
+
 Unit::Unit(const std::string& name, int hp, int dmg, IAttack* attackStrategy) 
-    : m_name(name), m_hitPoints(hp), m_hitPointsLimit(hp), m_damage(dmg), m_attackStrategy(attackStrategy) {}
+: m_name(name), m_hitPoints(hp), m_hitPointsLimit(hp), m_damage(dmg), m_attackStrategy(attackStrategy) {}
 
 Unit::~Unit() {
     delete m_attackStrategy;
@@ -53,23 +56,22 @@ void Unit::takeDamage(int dmg) {
 
 void Unit::attack(Unit& enemy) {
     this->ensureIsAlive();
-
-    PhysicalDamage* physicalDmg = new PhysicalDamage(m_damage);
-    m_attackStrategy->attack(*this, enemy, physicalDmg);
+    
+    Damage* dmg = new Damage(m_damage, PHYSICAL_DAMAGE);
+    m_attackStrategy->attack(*this, enemy, dmg);
 }
 
 void Unit::attack(Unit& enemy, BattleSpell& bs) {
     this->ensureIsAlive();
 
-    MagicDamage* magicDmg = new MagicDamage(bs.getValue());
-    m_attackStrategy->attack(*this, enemy, magicDmg);
+    Damage* dmg = new Damage(bs.getValue(), MAGIC_DAMAGE);
+    m_attackStrategy->attack(*this, enemy, dmg);
 }
 
 void Unit::counterAttack(Unit& enemy) {
     this->ensureIsAlive();
 
-    PhysicalDamage physicalDmg = new PhysicalDamage(m_damage/2);
-    enemy.takeDamage();
+    enemy.takeDamage(m_damage/2);
 }
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {

@@ -1,7 +1,6 @@
 #ifndef BATTLESPELL_H
 #define BATTLESPELL_H
 
-#include <iostream>
 #include "Spell.h"
 
 class BattleSpell:public Spell {

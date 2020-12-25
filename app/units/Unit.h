@@ -2,8 +2,12 @@
 #define UNIT_H
 
 #include <iostream>
-#include "./attacks/IAttack.h"
-#include "./spells/BattleSpell.h"
+#include "../attacks/IAttack.h"
+#include "../attacks/DefaultAttack.h"
+#include "../spells/BattleSpell.h"
+#include "../damage/Damage.h"
+
+class IAttack;
 
 class UnitIsDead {};
 
@@ -16,6 +20,7 @@ class Unit {
         IAttack* m_attackStrategy;
         void ensureIsAlive();
     protected:
+        Unit(const std::string& name, int hp, int dmg);
         Unit(const std::string& name, int hp, int dmg, IAttack* attackStrategy);
         ~Unit();
     
@@ -28,8 +33,8 @@ class Unit {
         void addHitPoints(int hp);
         void takeDamage(int dmg);
 
-        virtual void attack(Unit& enemy) = 0;
-        virtual void attack(Unit& enemy, BattleSpell bs) = 0;
+        void attack(Unit& enemy);
+        void attack(Unit& enemy, BattleSpell& bs);
         void counterAttack(Unit& enemy);
 };
 

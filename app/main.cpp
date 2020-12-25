@@ -1,6 +1,13 @@
 #include <iostream>
-#include "./units/Unit.h"
-#include "./units/race/Rogue.h"
+#include "units/Unit.h"
+#include "units/SpellCaster.h"
+#include "units/race/Rogue.h"
+#include "spells/Spell.h"
+#include "spells/BattleSpell.h"
+#include "spells/battle_spells/MagicArrow.h"
+#include "damage/Damage.h"
+#include "attacks/IAttack.h"
+#include "attacks/DefaultAttack.h"
 
 int main() {
     
@@ -10,7 +17,7 @@ int main() {
     std::cout << barbarian << std::endl;
     std::cout << knight << std::endl;
     
-    barbarian.counterAttack(knight);
+    barbarian.attack(knight);
     
     std::cout << barbarian << std::endl;
     std::cout << knight << std::endl;

@@ -11,11 +11,11 @@ enum DamageType {
 class Damage {
     private:
         int m_value;
-
-    protected:
-        Damage(int value);
+        DamageType m_dmgType;
 
     public:
+        Damage(int value, DamageType dmgType);
+        
         int getValue() const;
 };
 
