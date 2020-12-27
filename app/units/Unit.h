@@ -4,10 +4,16 @@
 #include <iostream>
 #include "../attacks/IAttack.h"
 #include "../attacks/DefaultAttack.h"
+#include "../takeDamage/ITakeDamage.h"
+#include "../takeDamage/DefaultTakeDamage.h"
+#include "../counterAttacks/ICounterAttack.h"
+#include "../counterAttacks/DefaultCounterAttack.h"
 #include "../spells/BattleSpell.h"
 #include "../damage/Damage.h"
 
 class IAttack;
+class ITakeDamage;
+class ICounterAttack;
 
 class UnitIsDead {};
 
@@ -18,11 +24,22 @@ class Unit {
         int m_hitPointsLimit;
         std::string m_name;
         IAttack* m_attackStrategy;
-        void ensureIsAlive();
+        ITakeDamage* m_takeDamageStrategy;
+        ICounterAttack* m_counterAttackStrategy;
+
     protected:
-        Unit(const std::string& name, int hp, int dmg);
-        Unit(const std::string& name, int hp, int dmg, IAttack* attackStrategy);
+        Unit(const std::string& name);
         ~Unit();
+        
+        void setAttackStrategy(IAttack* attackStrategy);
+        void setTakeDamageStrategy(ITakeDamage* takeDamageStrategy);
+        void setCounterAttackStrategy(ICounterAttack* counterAttackStrategy);
+
+        IAttack* getAttackStrategy() const;
+        ITakeDamage* getTakeDamageStrategy() const;
+        ICounterAttack* getCounterAttackStrategy() const;
+
+        void ensureIsAlive();
     
     public:
         int getDamage() const;
@@ -31,10 +48,10 @@ class Unit {
         const std::string& getName() const;
 
         void addHitPoints(int hp);
-        void takeDamage(int dmg);
+        void reduceHitPoints(int hp);
+        void takeDamage(Damage& dmg);
 
         void attack(Unit& enemy);
-        void attack(Unit& enemy, BattleSpell& bs);
         void counterAttack(Unit& enemy);
 };
 

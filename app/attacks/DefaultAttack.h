@@ -6,7 +6,7 @@
 class DefaultAttack : public IAttack {
     public:
         DefaultAttack();
-        virtual void attack(Unit& attacker, Unit& enemy, Damage* dmg);
+        virtual void attack(Unit& attacker, Unit& enemy, Damage& dmg);
 };
 
 #endif //DEFAULTATTACK_H

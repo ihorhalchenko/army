@@ -8,7 +8,7 @@ class Damage;
 
 class IAttack {
     public:
-        virtual void attack(Unit& attacker, Unit& enemy, Damage* dmg) = 0;
+        virtual void attack(Unit& attacker, Unit& enemy, Damage& dmg) = 0;
 };
 
 #endif //IATTACK_H

@@ -2,7 +2,7 @@
 
 DefaultAttack::DefaultAttack() {}
 
-void DefaultAttack::attack(Unit& attacker, Unit& enemy, Damage* dmg) {
-    enemy.takeDamage(dmg->getValue());
+void DefaultAttack::attack(Unit& attacker, Unit& enemy, Damage& dmg) {
+    enemy.takeDamage(dmg);
     enemy.counterAttack(attacker);
 }

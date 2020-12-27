@@ -1,19 +1,40 @@
 #include "Unit.h"
 
-Unit::Unit(const std::string& name, int hp, int dmg) 
-: m_name(name), m_hitPoints(hp), m_hitPointsLimit(hp), m_damage(dmg), m_attackStrategy(new DefaultAttack()) {}
-
-Unit::Unit(const std::string& name, int hp, int dmg, IAttack* attackStrategy) 
-: m_name(name), m_hitPoints(hp), m_hitPointsLimit(hp), m_damage(dmg), m_attackStrategy(attackStrategy) {}
+Unit::Unit(const std::string& name) : m_name(name), m_damage(20), m_hitPoints(100), m_hitPointsLimit(100) {}
 
 Unit::~Unit() {
     delete m_attackStrategy;
+    delete m_takeDamageStrategy;
+    delete m_counterAttackStrategy;
 }
 
 void Unit::ensureIsAlive() {
     if ( m_hitPoints == 0 ) {
        throw UnitIsDead();
    }
+}
+
+void Unit::setAttackStrategy(IAttack* attackStrategy) {
+    m_attackStrategy = attackStrategy;
+}
+
+void Unit::setTakeDamageStrategy(ITakeDamage* takeDamageStrategy) {
+    m_takeDamageStrategy = takeDamageStrategy;
+}
+
+void Unit::setCounterAttackStrategy(ICounterAttack* counterAttackStrategy) {
+    m_counterAttackStrategy = counterAttackStrategy;
+}
+
+IAttack* Unit::getAttackStrategy() const {
+    return m_attackStrategy;
+}
+
+ITakeDamage* Unit::getTakeDamageStrategy() const {
+    return m_takeDamageStrategy;
+}
+ICounterAttack* Unit::getCounterAttackStrategy() const {
+    return m_counterAttackStrategy;
 }
 
 int Unit::getDamage() const {
@@ -38,44 +59,51 @@ void Unit::addHitPoints(int hp) {
     if ( hp < 1 ) {
         return;
     }
-    
-    if ( m_hitPoints + hp > m_hitPointsLimit ) {
-        hp = m_hitPointsLimit - m_hitPoints;
+
+    int result = m_hitPoints + hp;
+
+    if ( result > m_hitPointsLimit ) {
+        m_hitPoints = m_hitPointsLimit;
+        return;
     }
-    m_hitPoints += hp;
+    m_hitPoints = result;
 }
 
-void Unit::takeDamage(int dmg) {
+void Unit::reduceHitPoints(int hp) {
     this->ensureIsAlive();
-    
-    if ( m_hitPoints - dmg < 1 ) {
-        throw UnitIsDead();
+
+    if ( hp > m_hitPoints ) {
+        m_hitPoints = 0;
+        return;
     }
-    m_hitPoints -= dmg;
+    m_hitPoints -= hp;
+}
+
+void Unit::takeDamage(Damage& dmg) {
+    this->ensureIsAlive();
+
+    m_takeDamageStrategy->takeDamage(*this, dmg);
 }
 
 void Unit::attack(Unit& enemy) {
     this->ensureIsAlive();
     
     Damage* dmg = new Damage(m_damage, PHYSICAL_DAMAGE);
-    m_attackStrategy->attack(*this, enemy, dmg);
-}
+    m_attackStrategy->attack(*this, enemy, *dmg);
 
-void Unit::attack(Unit& enemy, BattleSpell& bs) {
-    this->ensureIsAlive();
-
-    Damage* dmg = new Damage(bs.getValue(), MAGIC_DAMAGE);
-    m_attackStrategy->attack(*this, enemy, dmg);
+    delete dmg;
 }
 
 void Unit::counterAttack(Unit& enemy) {
     this->ensureIsAlive();
 
-    enemy.takeDamage(m_damage/2);
+    Damage* dmg = new Damage(m_damage, PHYSICAL_DAMAGE);
+    m_counterAttackStrategy->counterAttack(*this, enemy, *dmg);
+
+    delete dmg;
 }
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {
-    out << "Name: " << unit.getName() << std::endl;
     out << "Damage: " << unit.getDamage() << std::endl;
     out << "Hit Points: " << unit.getHitPoints() << std::endl;
     out << "Hit Points Limit: " << unit.getHitPointsLimit() << std::endl;

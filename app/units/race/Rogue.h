@@ -5,7 +5,7 @@
 
 class Rogue: public Unit {
     public:
-        Rogue(const std::string& name, int hp, int dmg);
+        Rogue(const std::string& name);
 };
 
 #endif //ROGUE_H

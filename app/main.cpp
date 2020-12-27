@@ -11,8 +11,8 @@
 
 int main() {
     
-    Rogue barbarian("Barbarian", 30, 22);
-    Rogue knight("Knight", 30, 25);
+    Rogue barbarian("Barbarian");
+    Rogue knight("Knight");
     
     std::cout << barbarian << std::endl;
     std::cout << knight << std::endl;
