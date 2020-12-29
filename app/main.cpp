@@ -1,18 +1,10 @@
 #include <iostream>
-#include "units/Unit.h"
-#include "units/SpellCaster.h"
-#include "units/race/Rogue.h"
-#include "spells/Spell.h"
-#include "spells/BattleSpell.h"
-#include "spells/battle_spells/MagicArrow.h"
-#include "damage/Damage.h"
-#include "attacks/IAttack.h"
-#include "attacks/DefaultAttack.h"
+#include "units/race/Soldier.h"
 
 int main() {
     
-    Rogue barbarian("Barbarian");
-    Rogue knight("Knight");
+    Soldier barbarian("Barbarian");
+    Soldier knight("Knight");
     
     std::cout << barbarian << std::endl;
     std::cout << knight << std::endl;

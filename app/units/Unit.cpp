@@ -1,8 +1,12 @@
 #include "Unit.h"
 
-Unit::Unit(const std::string& name) : m_name(name), m_damage(20), m_hitPoints(100), m_hitPointsLimit(100) {}
+Unit::Unit(const std::string& name, int damageValue, int hitPoints, int hitPointsLimit) 
+    : m_name(name), m_hitPoints(hitPoints), m_hitPointsLimit(hitPointsLimit) {
+        m_damage = new Damage(damageValue, PHYSICAL_DAMAGE);
+    }
 
 Unit::~Unit() {
+    delete m_damage;
     delete m_attackStrategy;
     delete m_takeDamageStrategy;
     delete m_counterAttackStrategy;
@@ -37,8 +41,8 @@ ICounterAttack* Unit::getCounterAttackStrategy() const {
     return m_counterAttackStrategy;
 }
 
-int Unit::getDamage() const {
-    return m_damage;
+int Unit::getDamageValue() const {
+    return m_damage->getValue();
 }
 
 int Unit::getHitPoints() const {
@@ -88,23 +92,17 @@ void Unit::takeDamage(Damage& dmg) {
 void Unit::attack(Unit& enemy) {
     this->ensureIsAlive();
     
-    Damage* dmg = new Damage(m_damage, PHYSICAL_DAMAGE);
-    m_attackStrategy->attack(*this, enemy, *dmg);
-
-    delete dmg;
+    m_attackStrategy->attack(*this, enemy, *m_damage);
 }
 
 void Unit::counterAttack(Unit& enemy) {
     this->ensureIsAlive();
 
-    Damage* dmg = new Damage(m_damage, PHYSICAL_DAMAGE);
-    m_counterAttackStrategy->counterAttack(*this, enemy, *dmg);
-
-    delete dmg;
+    m_counterAttackStrategy->counterAttack(*this, enemy, *m_damage);
 }
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {
-    out << "Damage: " << unit.getDamage() << std::endl;
+    out << "Damage: " << unit.getDamageValue() << std::endl;
     out << "Hit Points: " << unit.getHitPoints() << std::endl;
     out << "Hit Points Limit: " << unit.getHitPointsLimit() << std::endl;
 }

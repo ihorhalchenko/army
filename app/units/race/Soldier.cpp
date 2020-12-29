@@ -1,6 +1,6 @@
-#include "Rogue.h"
+#include "Soldier.h"
 
-Rogue::Rogue(const std::string& name) : Unit(name) {
+Soldier::Soldier (const std::string& name) : Unit(name) {
     this->setAttackStrategy(new DefaultAttack());
     this->setTakeDamageStrategy(new DefaultTakeDamage());
     this->setCounterAttackStrategy(new DefaultCounterAttack());

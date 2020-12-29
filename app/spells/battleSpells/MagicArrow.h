@@ -1,9 +1,9 @@
 #ifndef MAGICARROW_H
 #define MAGICARROW_H
 
-#include "../BattleSpell.h"
+#include "../Spell.h"
 
-class MagicArrow : public BattleSpell {
+class MagicArrow : public Spell {
     public:
         MagicArrow();
 };
