@@ -1,8 +1,6 @@
 #ifndef IATTACK_H
 #define IATTACK_H
 
-#include "../units/Unit.h"
-
 class Unit;
 class Damage;
 

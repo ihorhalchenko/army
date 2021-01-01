@@ -2,6 +2,7 @@
 #define DEFAULTCOUNTERATTACK_H
 
 #include "ICounterAttack.h"
+#include "../units/Unit.h"
 
 class DefaultCounterAttack : public ICounterAttack {
     public:

@@ -1,13 +1,13 @@
-#ifndef DEFAULTATTACK_H
-#define DEFAULTATTACK_H
+#ifndef WOLFATTACK_H
+#define WOLFATTACK_H
 
 #include "IAttack.h"
 #include "../units/Unit.h"
 
-class DefaultAttack : public IAttack {
+class WolfAttack : public IAttack {
     public:
-        DefaultAttack();
+        WolfAttack();
         virtual void attack(Unit& attacker, Unit& enemy, Damage& dmg);
 };
 
-#endif //DEFAULTATTACK_H
+#endif //WOLFATTACK_H

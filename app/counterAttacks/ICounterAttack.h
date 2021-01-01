@@ -1,8 +1,6 @@
 #ifndef COUNTERATTACK_H
 #define COUNTERATTACK_H
 
-#include "../units/Unit.h"
-
 class Unit;
 class Damage;
 

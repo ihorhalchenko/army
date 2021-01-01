@@ -1,14 +1,14 @@
-#include "Battlemage.h"
+#include "Healer.h"
 
-Battlemage::Battlemage(const std::string& name) : Spellcaster(name) {
-    this->addUnitType(UNIT_TYPE_BATTLEMAGE);
+Healer::Healer(const std::string& name) : Spellcaster(name) {
+    this->addUnitType(UNIT_TYPE_HEALER);
 }
 
-void Battlemage::addSpellToBook(Spell* spell) {
+void Healer::addSpellToBook(Spell* spell) {
     int spellValue = spell->getValue();
     std::map<std::string, Spell>& sb = this->getSpellBook();
     
-    if ( spell->getType() == HEALING_SPELL ) {
+    if ( spell->getType() == BATTLE_SPELL ) {
         spellValue /= 2;
     }
     Spell insertSpell = Spell(spell->getName(), spellValue, spell->getType());

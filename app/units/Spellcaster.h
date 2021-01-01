@@ -12,6 +12,7 @@ class Spellcaster: public Unit {
         ~Spellcaster();
 
         std::map<std::string, Spell>& getSpellBook();
+        Spell& getSpellFromBook(const std::string& spellName);
     public:
         void attack(Unit& enemy, const std::string& spellName);
 
