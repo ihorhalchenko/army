@@ -1,7 +1,7 @@
 #include "SpellCaster.h"
 
 Spellcaster::Spellcaster(const std::string& name, int damageValue, int hitPoints, int hitPointsLimit) : Unit(name, damageValue, hitPoints, hitPointsLimit) {
-    this->addUnitType(UNIT_TYPE_SPELLCASTER);
+    addUnitType(UNIT_TYPE_SPELLCASTER);
 }
 
 Spellcaster::~Spellcaster() {}
@@ -24,11 +24,11 @@ Spell& Spellcaster::getSpellFromBook(const std::string& spellName) {
 }
 
 void Spellcaster::attack(Unit& enemy, const std::string& spellName) {
-    this->ensureIsAlive();
+    ensureIsAlive();
 
     Spell& spell = getSpellFromBook(spellName);
     Damage dmg = Damage(spell.getValue(), MAGIC_DAMAGE);
-    this->getAttackStrategy()->attack(*this, enemy, dmg);
+    getAttackStrategy()->attack(*this, enemy, dmg);
 }
 
 void Spellcaster::addSpellToBook(Spell* spell) {

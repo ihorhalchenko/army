@@ -11,17 +11,21 @@
 #include "../attacks/WolfAttack.h"
 #include "../takeDamage/ITakeDamage.h"
 #include "../takeDamage/DefaultTakeDamage.h"
-//#include "../takeDamage/WolfTakeDamage.h"
+#include "../takeDamage/WolfTakeDamage.h"
 #include "../counterAttacks/ICounterAttack.h"
 #include "../counterAttacks/DefaultCounterAttack.h"
 #include "../counterAttacks/WolfCounterAttack.h"
-#include "../states/werewolf/IWerewolfState.h"
+#include "../states/State.h"
 #include "../states/werewolf/HumanState.h"
 #include "../states/werewolf/WolfState.h"
 
 class IAttack;
 class ITakeDamage;
 class ICounterAttack;
+
+#define UNIT_DEFAULT_DAMAGE_VALUE 20
+#define UNIT_DEFAULT_HIT_POINTS 100
+#define UNIT_DEFAULT_HIT_POINTS_LIMIT 100
 
 enum UnitType {
     UNIT_TYPE_UNIT,
@@ -38,19 +42,20 @@ class Unit {
         int m_hitPoints;
         int m_hitPointsLimit;
         std::string m_name;
+        State* m_state;
         IAttack* m_attackStrategy;
         ITakeDamage* m_takeDamageStrategy;
         ICounterAttack* m_counterAttackStrategy;
         std::set<UnitType> m_unitTypes;
 
+
     protected:
-        Unit(const std::string& name, int damageValue = 20, int hitPoints = 100, int hitPointsLimit = 100);
-        ~Unit();
+        Unit(const std::string& name, int damageValue = UNIT_DEFAULT_DAMAGE_VALUE, int hitPoints = UNIT_DEFAULT_HIT_POINTS, int hitPointsLimit = UNIT_DEFAULT_HIT_POINTS_LIMIT);
+        virtual ~Unit();
 
         void ensureIsAlive();
 
-        void setHitPoints(int hp);
-        void setHitPointsLimit(int hp);
+        void setState(State* state);
         
         void setAttackStrategy(IAttack* attackStrategy);
         void setTakeDamageStrategy(ITakeDamage* takeDamageStrategy);
@@ -69,13 +74,18 @@ class Unit {
         int getHitPoints() const;
         int getHitPointsLimit() const;
         const std::string& getName() const;
+        State* getState() const;
 
         void addHitPoints(int hp);
         void reduceHitPoints(int hp);
+        
+        void setHitPoints(int hp);
+        void setHitPointsLimit(int hp);
+        void setDamageValue(int value);
 
-        void attack(Unit& enemy);
-        void counterAttack(Unit& enemy);
-        void takeDamage(Damage& dmg);
+        virtual void attack(Unit& enemy);
+        virtual void counterAttack(Unit& enemy);
+        virtual void takeDamage(const Damage& dmg);
 };
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit);

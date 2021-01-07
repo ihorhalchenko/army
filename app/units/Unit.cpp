@@ -7,10 +7,11 @@ Unit::Unit(const std::string& name, int damageValue, int hitPoints, int hitPoint
     }
 
 Unit::~Unit() {
-    delete m_damage;
-    delete m_attackStrategy;
-    delete m_takeDamageStrategy;
-    delete m_counterAttackStrategy;
+        delete m_state;
+        delete m_damage;
+        delete m_attackStrategy;
+        delete m_takeDamageStrategy;
+        delete m_counterAttackStrategy;
 }
 
 void Unit::ensureIsAlive() {
@@ -19,12 +20,8 @@ void Unit::ensureIsAlive() {
    }
 }
 
-void Unit::setHitPoints(int hp) {
-    m_hitPoints = hp;
-}
-
-void Unit::setHitPointsLimit(int hp) {
-    m_hitPointsLimit = hp;
+void Unit::setState(State* state) {
+    m_state = state;
 }
 
 void Unit::setAttackStrategy(IAttack* attackStrategy) {
@@ -79,8 +76,12 @@ const std::string& Unit::getName() const {
     return m_name;
 }
 
+State* Unit::getState() const {
+    return m_state;
+}
+
 void Unit::addHitPoints(int hp) {
-    this->ensureIsAlive();
+    ensureIsAlive();
     
     if ( hp < 1 ) {
         return;
@@ -96,7 +97,7 @@ void Unit::addHitPoints(int hp) {
 }
 
 void Unit::reduceHitPoints(int hp) {
-    this->ensureIsAlive();
+    ensureIsAlive();
 
     if ( hp > m_hitPoints ) {
         m_hitPoints = 0;
@@ -105,25 +106,38 @@ void Unit::reduceHitPoints(int hp) {
     m_hitPoints -= hp;
 }
 
+void Unit::setHitPoints(int hp) {
+    m_hitPoints = hp;
+}
+
+void Unit::setHitPointsLimit(int hp) {
+    m_hitPointsLimit = hp;
+}
+
+void Unit::setDamageValue(int value) {
+    m_damage = new Damage(value, PHYSICAL_DAMAGE);
+}
+
 void Unit::attack(Unit& enemy) {
-    this->ensureIsAlive();
+    ensureIsAlive();
     
     m_attackStrategy->attack(*this, enemy, *m_damage);
 }
 
 void Unit::counterAttack(Unit& enemy) {
-    this->ensureIsAlive();
+    ensureIsAlive();
 
     m_counterAttackStrategy->counterAttack(*this, enemy, *m_damage);
 }
 
-void Unit::takeDamage(Damage& dmg) {
-    this->ensureIsAlive();
+void Unit::takeDamage(const Damage& dmg) {
+    ensureIsAlive();
 
     m_takeDamageStrategy->takeDamage(*this, dmg);
 }
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {
+    out << "Name: " << unit.getName() << std::endl;
     out << "Damage: " << unit.getDamageValue() << std::endl;
     out << "Hit Points: " << unit.getHitPoints() << std::endl;
     out << "Hit Points Limit: " << unit.getHitPointsLimit() << std::endl;

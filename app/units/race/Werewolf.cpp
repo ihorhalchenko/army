@@ -1,31 +1,41 @@
 #include "Werewolf.h"
 
 Werewolf::Werewolf (const std::string& name) : Unit(name) {
-    this->addUnitType(UNIT_TYPE_WEREWOLF);
-    setState(new HumanState());
+    addUnitType(UNIT_TYPE_WEREWOLF);
+    setState(new HumanState(*this));
+    setAttackStrategy(0);
+    setTakeDamageStrategy(0);
+    setCounterAttackStrategy(0);
 }
 
-Werewolf::~Werewolf() {
-    delete m_state;
-}
-
-void Werewolf::setState(IWerewolfState* state) {
-    if ( m_state != NULL ) {
-        delete m_state;
-    }
-    m_state = state;
-}
+Werewolf::~Werewolf() {}
 
 void Werewolf::attack(Unit& enemy) {
+    ensureIsAlive();
+
     Damage* dmg = getDamage();
-    m_state->attack(*this, enemy, *dmg);
+    getState()->attack(*this, enemy, *dmg);
 }
 
 void Werewolf::counterAttack(Unit& enemy) {
+    ensureIsAlive();
+
     Damage* dmg = getDamage();
-    m_state->counterAttack(*this, enemy, *dmg);
+    getState()->counterAttack(*this, enemy, *dmg);
 }
 
-void Werewolf::takeDamage(Damage& dmg) {
-    m_state->takeDamage(*this, dmg);
+void Werewolf::takeDamage(const Damage& dmg) {
+    ensureIsAlive();
+
+    getState()->takeDamage(*this, dmg);
+}
+
+void Werewolf::turnIntoWolf() {
+    ensureIsAlive();
+    setState(new WolfState(*this));
+}
+
+void Werewolf::turnIntoHuman() {
+    ensureIsAlive();
+    setState(new HumanState(*this));
 }

@@ -6,7 +6,7 @@ class Damage;
 
 class ICounterAttack {
     public:
-        virtual void counterAttack(Unit& counterAttacker, Unit& enemy, Damage& attackDmg) = 0;
+        virtual void counterAttack(Unit& counterAttacker, Unit& enemy, const Damage& attackDmg) = 0;
 };
 
 #endif //COUNTERATTACK_H

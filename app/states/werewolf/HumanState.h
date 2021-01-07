@@ -1,15 +1,14 @@
 #ifndef HUMANSTATE_H
 #define HUMANSTATE_H
 
-#include "IWerewolfState.h"
 #include "../../units/Unit.h"
 
-class HumanState : public IWerewolfState {
+class HumanState : public State {
     public:
-        HumanState();
-        virtual void attack(Unit& attacker, Unit& enemy, Damage& dmg);
-        virtual void counterAttack(Unit& counterAttacker, Unit& enemy, Damage& attackDmg);
-        virtual void takeDamage(Unit& unit, Damage& dmg);
+        HumanState(Unit& unit);
+        virtual void attack(Unit& attacker, Unit& enemy, const Damage& dmg);
+        virtual void counterAttack(Unit& counterAttacker, Unit& enemy, const Damage& attackDmg);
+        virtual void takeDamage(Unit& unit, const Damage& dmg);
 };
 
 #endif //HUMANSTATE_H

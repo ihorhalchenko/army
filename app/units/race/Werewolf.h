@@ -4,17 +4,16 @@
 #include "../Unit.h"
 
 class Werewolf : public Unit {
-    private:
-        IWerewolfState* m_state;
     public:
         Werewolf (const std::string& name);
-        ~Werewolf ();
+        virtual ~Werewolf ();
 
-        void setState(IWerewolfState* state);
+        virtual void attack(Unit& enemy);
+        virtual void counterAttack(Unit& enemy);
+        virtual void takeDamage(const Damage& dmg);
 
-        void attack(Unit& enemy);
-        void counterAttack(Unit& enemy);
-        void takeDamage(Damage& dmg);
+        void turnIntoWolf();
+        void turnIntoHuman();
 };
 
 #endif //WEREWOLF_H
