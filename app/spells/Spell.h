@@ -3,23 +3,24 @@
 
 #include <iostream>
 
-enum SpellType {
-    BATTLE_SPELL,
-    HEALING_SPELL
-};
-
 class Spell {
+    public:
+        enum Type {
+            TYPE_BATTLE,
+            TYPE_HEALING
+        };
+
     private:
         std::string m_name;
         int m_value;
-        SpellType m_type;
+        Type m_type;
 
     public:
-        Spell(const std::string name, int value, SpellType spellType);
+        Spell(const std::string name, int value, Type spellType);
         
         const std::string& getName() const;
         int getValue() const;
-        SpellType getType() const;
+        Type getType() const;
         std::string getStringType() const;
 };
 

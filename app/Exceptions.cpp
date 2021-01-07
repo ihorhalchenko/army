@@ -11,3 +11,7 @@ const char*  AttackWithNotBattleSpell::what() const throw() {
 const char*  NoSuchSpellInBook::what() const throw() {
     return "There is no such spell in the spellbook.";
 }
+
+const char*  UnitCantDoThis::what() const throw() {
+    return "Unit can't do this.";
+}

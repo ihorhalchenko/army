@@ -1,7 +1,7 @@
 #include "SpellCaster.h"
 
 Spellcaster::Spellcaster(const std::string& name, int damageValue, int hitPoints, int hitPointsLimit) : Unit(name, damageValue, hitPoints, hitPointsLimit) {
-    addUnitType(UNIT_TYPE_SPELLCASTER);
+    addUnitType(Unit::TYPE_SPELLCASTER);
 }
 
 Spellcaster::~Spellcaster() {}
@@ -16,7 +16,7 @@ Spell& Spellcaster::getSpellFromBook(const std::string& spellName) {
     if ( it == m_spellBook.end() ) {
         throw NoSuchSpellInBook();
     } 
-    if ( it->second.getType() != BATTLE_SPELL ) {
+    if ( it->second.getType() != Spell::TYPE_BATTLE ) {
         throw AttackWithNotBattleSpell();
     }
 
@@ -27,8 +27,8 @@ void Spellcaster::attack(Unit& enemy, const std::string& spellName) {
     ensureIsAlive();
 
     Spell& spell = getSpellFromBook(spellName);
-    Damage dmg = Damage(spell.getValue(), MAGIC_DAMAGE);
-    getAttackStrategy()->attack(*this, enemy, dmg);
+    Damage dmg = Damage(spell.getValue(), Damage::TYPE_MAGIC);
+    getState()->attack(enemy, dmg);
 }
 
 void Spellcaster::addSpellToBook(Spell* spell) {

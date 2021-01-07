@@ -20,4 +20,9 @@ class NoSuchSpellInBook : public ArmyException {
         virtual const char* what() const throw();
 };
 
+class UnitCantDoThis : public ArmyException {
+    public:
+        virtual const char* what() const throw();
+};
+
 #endif //ARMY_EXCEPTIONS_H_H

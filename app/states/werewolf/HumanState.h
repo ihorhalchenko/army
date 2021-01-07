@@ -3,12 +3,10 @@
 
 #include "../../units/Unit.h"
 
-class HumanState : public State {
+class HumanState : public WerewolfState {
     public:
-        HumanState(Unit& unit);
-        virtual void attack(Unit& attacker, Unit& enemy, const Damage& dmg);
-        virtual void counterAttack(Unit& counterAttacker, Unit& enemy, const Damage& attackDmg);
-        virtual void takeDamage(Unit& unit, const Damage& dmg);
+        HumanState();
+        virtual ~HumanState();
 };
 
 #endif //HUMANSTATE_H

@@ -3,21 +3,22 @@
 
 #include <iostream>
 
-enum DamageType {
-    PHYSICAL_DAMAGE,
-    MAGIC_DAMAGE
-};
-
 class Damage {
+    public:
+        enum Type {
+            TYPE_PHYSICAL,
+            TYPE_MAGIC
+        };
+
     private:
         int m_value;
-        DamageType m_type;
+        Type m_type;
 
     public:
-        Damage(int value, DamageType type);
+        Damage(int value, Type type);
         
         int getValue() const;
-        DamageType getType() const;
+        Type getType() const;
 };
 
 #endif //DAMAGE_H

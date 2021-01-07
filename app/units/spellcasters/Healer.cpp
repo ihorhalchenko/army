@@ -1,14 +1,14 @@
 #include "Healer.h"
 
 Healer::Healer(const std::string& name) : Spellcaster(name) {
-    addUnitType(UNIT_TYPE_HEALER);
+    addUnitType(Unit::TYPE_HEALER);
 }
 
 void Healer::addSpellToBook(Spell* spell) {
     int spellValue = spell->getValue();
     std::map<std::string, Spell>& sb = getSpellBook();
     
-    if ( spell->getType() == BATTLE_SPELL ) {
+    if ( spell->getType() == Spell::TYPE_BATTLE ) {
         spellValue /= 2;
     }
     Spell insertSpell = Spell(spell->getName(), spellValue, spell->getType());

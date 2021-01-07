@@ -1,14 +1,14 @@
 #include "Battlemage.h"
 
 Battlemage::Battlemage(const std::string& name) : Spellcaster(name) {
-    addUnitType(UNIT_TYPE_BATTLEMAGE);
+    addUnitType(Unit::TYPE_BATTLEMAGE);
 }
 
 void Battlemage::addSpellToBook(Spell* spell) {
     int spellValue = spell->getValue();
     std::map<std::string, Spell>& sb = getSpellBook();
     
-    if ( spell->getType() == HEALING_SPELL ) {
+    if ( spell->getType() == Spell::TYPE_HEALING ) {
         spellValue /= 2;
     }
     Spell insertSpell = Spell(spell->getName(), spellValue, spell->getType());

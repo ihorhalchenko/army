@@ -1,27 +1,36 @@
 #ifndef STATE_H
 #define STATE_H
 
+#include "../units/Unit.h"
+
 class Unit;
 class Damage;
 
-enum StateType {
-    WEREWOLF_HUMAN_STATE,
-    WEREWOLF_WOLF_STATE
-};
-
 class State {
-    private:
-        StateType m_stateType;
+    public:
+        enum Type {
+            STATE_DEFAULT,
+            STATE_WEREWOLF_HUMAN,
+            STATE_WEREWOLF_WOLF
+        };
+
+        Unit* m_unit;
+        Type m_type;
 
     protected:
-        void setStateType(StateType st);
+        void setType(Type type);
 
     public:
-        virtual void attack(Unit& attacker, Unit& enemy, const Damage& dmg) = 0;
-        virtual void counterAttack(Unit& counterAttacker, Unit& enemy, const Damage& attackDmg) = 0;
-        virtual void takeDamage(Unit& unit, const Damage& dmg) = 0;
+        State();
+        virtual ~State();
+        virtual void attack(Unit& enemy, const Damage& dmg);
+        virtual void counterAttack(Unit& enemy, const Damage& attackDmg);
+        virtual void takeDamage(const Damage& dmg);
+        virtual void turnIntoWolf();
+        virtual void turnIntoHuman();
 
-        StateType getStateType() const;
+        void setContext(Unit* unit);
+        Type getType() const;
 };
 
 #endif //STATE_H
