@@ -6,6 +6,7 @@ class Damage;
 
 class ICounterAttack {
     public:
+        virtual ~ICounterAttack();
         virtual void counterAttack(Unit& counterAttacker, Unit& enemy, const Damage& attackDmg) = 0;
 };
 

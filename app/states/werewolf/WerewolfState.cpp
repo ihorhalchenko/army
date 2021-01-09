@@ -1,12 +1,18 @@
+#include "../../units/Unit.h"
+#include "../State.h"
+#include "HumanState.h"
+#include "WolfState.h"
 #include "WerewolfState.h"
 
-WerewolfState::WerewolfState() {}
+WerewolfState::WerewolfState(Unit* unit) : DefaultState(unit) {}
 WerewolfState::~WerewolfState() {}
 
 void WerewolfState::turnIntoWolf() {
-    m_unit->setState(new WolfState());
+    Unit* unit = getUnit();
+    unit->setState(new WolfState(unit));
 }
 
 void WerewolfState::turnIntoHuman() {
-    m_unit->setState(new HumanState());
+    Unit* unit = getUnit();
+    getUnit()->setState(new HumanState(unit));
 }

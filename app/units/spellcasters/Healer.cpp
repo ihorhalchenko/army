@@ -1,8 +1,12 @@
+#include "../Spellcaster.h"
+#include "../../spells/Spell.h"
 #include "Healer.h"
 
 Healer::Healer(const std::string& name) : Spellcaster(name) {
     addUnitType(Unit::TYPE_HEALER);
 }
+
+Healer::~Healer() {}
 
 void Healer::addSpellToBook(Spell* spell) {
     int spellValue = spell->getValue();

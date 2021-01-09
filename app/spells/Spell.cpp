@@ -1,6 +1,7 @@
 #include "Spell.h"
 
 Spell::Spell(const std::string name, int value, Spell::Type spellType) : m_name(name), m_value(value), m_type(spellType)  {}
+Spell::~Spell() {}
 
 const std::string& Spell::getName() const {
     return m_name;

@@ -1,11 +1,11 @@
 #ifndef WEREWOLFSTATE_H
 #define WEREWOLFSTATE_H
 
-#include "../../units/Unit.h"
+#include "../DefaultState.h"
 
 class WerewolfState : public DefaultState {
     public:
-        WerewolfState();
+        WerewolfState(Unit* unit);
         virtual ~WerewolfState();
 
         virtual void turnIntoWolf();

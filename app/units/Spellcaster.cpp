@@ -1,3 +1,7 @@
+#include "../Exceptions.h"
+#include "../spells/Spell.h"
+#include "../states/State.h"
+#include "../damage/Damage.h"
 #include "SpellCaster.h"
 
 Spellcaster::Spellcaster(const std::string& name, int damageValue, int hitPoints, int hitPointsLimit) : Unit(name, damageValue, hitPoints, hitPointsLimit) {

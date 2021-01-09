@@ -18,6 +18,7 @@ int main() {
     std::cout << werewolf << std::endl;
 
     std::cout << "----------------------------" << std::endl;
+
     werewolf.turnIntoWolf();
     werewolf.attack(knight);
 

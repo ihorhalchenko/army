@@ -1,11 +1,12 @@
 #ifndef WOLFTAKEDAMAGE_H
 #define WOLFTAKEDAMAGE_H
 
-#include "../units/Unit.h"
+#include "ITakeDamage.h"
 
 class WolfTakeDamage : public ITakeDamage {
     public:
         WolfTakeDamage();
+        virtual ~WolfTakeDamage();
         virtual void takeDamage(Unit& unit, const Damage& dmg);
 };
 

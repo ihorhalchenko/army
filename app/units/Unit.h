@@ -2,31 +2,11 @@
 #define UNIT_H
 
 #include <iostream>
-#include <map>
 #include <set>
-#include "../Exceptions.h"
-#include "../damage/Damage.h"
-#include "../attacks/IAttack.h"
-#include "../attacks/DefaultAttack.h"
-#include "../takeDamage/ITakeDamage.h"
-#include "../takeDamage/DefaultTakeDamage.h"
-#include "../takeDamage/WolfTakeDamage.h"
-#include "../counterAttacks/ICounterAttack.h"
-#include "../counterAttacks/DefaultCounterAttack.h"
-#include "../states/State.h"
-#include "../states/DefaultState.h"
-#include "../states/werewolf/WerewolfState.h"
-#include "../states/werewolf/HumanState.h"
-#include "../states/werewolf/WolfState.h"
+#include "../macros.h"
 
-class IAttack;
-class ITakeDamage;
-class ICounterAttack;
 class State;
-
-#define UNIT_DEFAULT_DAMAGE_VALUE 20
-#define UNIT_DEFAULT_HIT_POINTS 100
-#define UNIT_DEFAULT_HIT_POINTS_LIMIT 100
+class Damage;
 
 class Unit {
     public:

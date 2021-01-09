@@ -1,14 +1,18 @@
+#include "../../Exceptions.h"
+#include "../../macros.h"
+#include "../../units/Unit.h"
+#include "../State.h"
 #include "HumanState.h"
 
-HumanState::HumanState() {
-    int hp = m_unit->getHitPoints() / WOLF_MULTIPLICATOR;
+HumanState::HumanState(Unit* unit) : WerewolfState(unit) {
+    int hp = unit->getHitPoints() / WOLF_MULTIPLICATOR;
     if ( hp == 0 ) {
         throw UnitIsDead();
     }
 
-    m_unit->setHitPointsLimit(m_unit->getHitPointsLimit() / WOLF_MULTIPLICATOR);
-    m_unit->setHitPoints(hp);
-    m_unit->setDamageValue(m_unit->getDamageValue() / WOLF_MULTIPLICATOR);
+    unit->setHitPointsLimit(unit->getHitPointsLimit() / WOLF_MULTIPLICATOR);
+    unit->setHitPoints(hp);
+    unit->setDamageValue(unit->getDamageValue() / WOLF_MULTIPLICATOR);
 }
 
 HumanState::~HumanState() {}

@@ -1,19 +1,22 @@
+#include "../attacks/DefaultAttack.h"
+#include "../takeDamage/DefaultTakeDamage.h"
+#include "../counterAttacks/DefaultCounterAttack.h"
 #include "DefaultState.h"
 
-DefaultState::DefaultState() {}
+DefaultState::DefaultState(Unit* unit) : State(unit) {}
 DefaultState::~DefaultState() {}
 
 void DefaultState::attack(Unit& enemy, const Damage& dmg) {
     DefaultAttack da = DefaultAttack();
-    da.attack(*m_unit, enemy, dmg);
+    da.attack(*(getUnit()), enemy, dmg);
 }
 
 void DefaultState::counterAttack(Unit& enemy, const Damage& attackDmg) {
     DefaultCounterAttack dca = DefaultCounterAttack();
-    dca.counterAttack(*m_unit, enemy, attackDmg);
+    dca.counterAttack(*(getUnit()), enemy, attackDmg);
 }
 
 void DefaultState::takeDamage(const Damage& dmg) {
     DefaultTakeDamage dtd = DefaultTakeDamage();
-    dtd.takeDamage(*m_unit, dmg);
+    dtd.takeDamage(*(getUnit()), dmg);
 }

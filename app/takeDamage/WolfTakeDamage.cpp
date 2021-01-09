@@ -1,6 +1,9 @@
+#include "../units/Unit.h"
+#include "../damage/Damage.h"
 #include "WolfTakeDamage.h"
 
 WolfTakeDamage::WolfTakeDamage() {}
+WolfTakeDamage::~WolfTakeDamage() {}
 
 void WolfTakeDamage::takeDamage(Unit& unit, const Damage& dmg) {
     int dmgValue = dmg.getValue();

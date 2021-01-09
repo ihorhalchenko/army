@@ -1,11 +1,16 @@
+#include "../damage/Damage.h"
+#include "../states/State.h"
+#include "../states/DefaultState.h"
+#include "../Exceptions.h"
 #include "Unit.h"
+
 
 Unit::Unit(const std::string& name, int damageValue, int hitPoints, int hitPointsLimit) 
     : m_name(name), 
     m_hitPoints(hitPoints), 
     m_hitPointsLimit(hitPointsLimit),
     m_damage(new Damage(damageValue, Damage::TYPE_PHYSICAL)),
-    m_state(new DefaultState()) {
+    m_state(new DefaultState(this)) {
         m_unitTypes.insert(Unit::TYPE_UNIT);
     }
 
@@ -26,7 +31,6 @@ void Unit::setState(State* state) {
     }
 
     m_state = state;
-    m_state->setContext(this);
 }
 
 void Unit::addUnitType(Unit::Type type) {

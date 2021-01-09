@@ -1,8 +1,12 @@
+#include "../Spellcaster.h"
+#include "../../spells/Spell.h"
 #include "Battlemage.h"
 
 Battlemage::Battlemage(const std::string& name) : Spellcaster(name) {
     addUnitType(Unit::TYPE_BATTLEMAGE);
 }
+
+Battlemage::~Battlemage() {}
 
 void Battlemage::addSpellToBook(Spell* spell) {
     int spellValue = spell->getValue();

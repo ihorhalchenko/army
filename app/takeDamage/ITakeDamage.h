@@ -6,6 +6,7 @@ class Damage;
 
 class ITakeDamage {
     public:
+        virtual ~ITakeDamage();
         virtual void takeDamage(Unit& unit, const Damage& dmg) = 0;
 };
 

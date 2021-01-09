@@ -1,11 +1,12 @@
 #ifndef PRAYER_H
 #define PRAYER_H
 
-#include "../Spell.h"
+class Spell;
 
 class Prayer : public Spell {
     public:
         Prayer();
+        virtual ~Prayer();
 };
 
 #endif //PRAYER_H

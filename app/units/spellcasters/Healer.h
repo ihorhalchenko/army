@@ -1,11 +1,12 @@
 #ifndef HEALER_H
 #define HEALER_H
 
-#include "..\Spellcaster.h"
+class Spellcaster;
 
 class Healer : public Spellcaster {
     protected:
         Healer(const std::string& name);
+        virtual ~Healer();
     
     public:
         void addSpellToBook(Spell* spell);

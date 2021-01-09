@@ -1,11 +1,14 @@
 #ifndef DEFAULTSTATE_H
 #define DEFAULTSTATE_H
 
-#include "../units/Unit.h"
+#include "State.h"
+
+class Unit;
+class Damage;
 
 class DefaultState : public State {
     public:
-        DefaultState();
+        DefaultState(Unit* unit);
         virtual ~DefaultState();
         virtual void attack(Unit& enemy, const Damage& dmg);
         virtual void counterAttack(Unit& enemy, const Damage& attackDmg);

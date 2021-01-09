@@ -1,6 +1,10 @@
+#include "../Exceptions.h"
 #include "State.h"
 
-State::State() {};
+State::State(Unit* unit) {
+    m_unit = unit;
+};
+
 State::~State() {};
 
 void State::attack(Unit& enemy, const Damage& dmg) {
@@ -23,14 +27,6 @@ void State::turnIntoHuman() {
     throw UnitCantDoThis();
 }
 
-void State::setContext(Unit* unit) {
-    m_unit = unit;
-}
-
-void State::setType(Type type) {
-    m_type = type;
-}
-
-State::Type State::getType() const {
-    return m_type;
-}
+ Unit* State::getUnit() const {
+     return m_unit;
+ }

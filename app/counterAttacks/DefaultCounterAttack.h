@@ -1,11 +1,12 @@
 #ifndef DEFAULTCOUNTERATTACK_H
 #define DEFAULTCOUNTERATTACK_H
 
-#include "../units/Unit.h"
+#include "ICounterAttack.h"
 
 class DefaultCounterAttack : public ICounterAttack {
     public:
         DefaultCounterAttack();
+        virtual ~DefaultCounterAttack();
         virtual void counterAttack(Unit& counterAttacker, Unit& enemy, const Damage& attackDmg);
 };
 

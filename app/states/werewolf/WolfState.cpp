@@ -1,12 +1,18 @@
+#include "../../macros.h"
+#include "../../units/Unit.h"
+#include "../State.h"
+#include "../../takeDamage/WolfTakeDamage.h"
 #include "WolfState.h"
 
-WolfState::WolfState() {
-    m_unit->setHitPointsLimit(m_unit->getHitPointsLimit() * WOLF_MULTIPLICATOR);
-    m_unit->setHitPoints(m_unit->getHitPoints() * WOLF_MULTIPLICATOR);
-    m_unit->setDamageValue(m_unit->getDamageValue() * WOLF_MULTIPLICATOR);
+WolfState::WolfState(Unit* unit) : WerewolfState(unit) {
+    unit->setHitPointsLimit(unit->getHitPointsLimit() * WOLF_MULTIPLICATOR);
+    unit->setHitPoints(unit->getHitPoints() * WOLF_MULTIPLICATOR);
+    unit->setDamageValue(unit->getDamageValue() * WOLF_MULTIPLICATOR);
 }
+
+WolfState::~WolfState() {}
 
 void WolfState::takeDamage(const Damage& dmg) {
     WolfTakeDamage wtd = WolfTakeDamage();
-    wtd.takeDamage(*m_unit, dmg);
+    wtd.takeDamage(*(getUnit()), dmg);
 }

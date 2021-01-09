@@ -17,6 +17,7 @@ class Spell {
 
     public:
         Spell(const std::string name, int value, Type spellType);
+        virtual ~Spell();
         
         const std::string& getName() const;
         int getValue() const;

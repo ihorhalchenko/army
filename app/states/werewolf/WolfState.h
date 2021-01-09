@@ -1,13 +1,11 @@
 #ifndef WOLFSTATE_H
 #define WOLFSTATE_H
 
-#define WOLF_MULTIPLICATOR 1.5
-
-#include "../../units/Unit.h"
+#include "WerewolfState.h"
 
 class WolfState : public WerewolfState {
     public:
-        WolfState();
+        WolfState(Unit* unit);
         virtual ~WolfState();
 
         virtual void takeDamage(const Damage& dmg);
