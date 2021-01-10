@@ -17,9 +17,9 @@ class Spellcaster: public Unit {
         std::map<std::string, Spell>& getSpellBook();
         Spell& getSpellFromBook(const std::string& spellName);
     public:
-        void attack(Unit& enemy, const std::string& spellName);
+        void cast(Unit& enemy, const std::string& spellName);
 
-        void addSpellToBook(Spell* spell);
+        void addSpellToBook(Spell& spell);
         void showSpellBook() const;
 };
 

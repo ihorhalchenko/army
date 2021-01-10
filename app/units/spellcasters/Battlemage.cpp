@@ -1,4 +1,3 @@
-#include "../Spellcaster.h"
 #include "../../spells/Spell.h"
 #include "Battlemage.h"
 
@@ -8,14 +7,14 @@ Battlemage::Battlemage(const std::string& name) : Spellcaster(name) {
 
 Battlemage::~Battlemage() {}
 
-void Battlemage::addSpellToBook(Spell* spell) {
-    int spellValue = spell->getValue();
+void Battlemage::addSpellToBook(Spell& spell) {
+    int spellValue = spell.getValue();
     std::map<std::string, Spell>& sb = getSpellBook();
     
-    if ( spell->getType() == Spell::TYPE_HEALING ) {
+    if ( spell.getType() == Spell::TYPE_HEALING ) {
         spellValue /= 2;
     }
-    Spell insertSpell = Spell(spell->getName(), spellValue, spell->getType());
-    sb.insert( std::pair<std::string, Spell>(spell->getName(), insertSpell) );
+    Spell insertSpell = Spell(spell.getName(), spellValue, spell.getType());
+    sb.insert(std::pair<std::string, Spell>(spell.getName(), insertSpell));
 }
 

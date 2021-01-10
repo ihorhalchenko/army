@@ -8,14 +8,14 @@ Healer::Healer(const std::string& name) : Spellcaster(name) {
 
 Healer::~Healer() {}
 
-void Healer::addSpellToBook(Spell* spell) {
-    int spellValue = spell->getValue();
+void Healer::addSpellToBook(Spell& spell) {
+    int spellValue = spell.getValue();
     std::map<std::string, Spell>& sb = getSpellBook();
     
-    if ( spell->getType() == Spell::TYPE_BATTLE ) {
+    if ( spell.getType() == Spell::TYPE_BATTLE ) {
         spellValue /= 2;
     }
-    Spell insertSpell = Spell(spell->getName(), spellValue, spell->getType());
-    sb.insert( std::pair<std::string, Spell>(spell->getName(), insertSpell) );
+    Spell insertSpell = Spell(spell.getName(), spellValue, spell.getType());
+    sb.insert(std::pair<std::string, Spell>(spell.getName(), insertSpell));
 }
 

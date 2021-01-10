@@ -19,24 +19,25 @@ Spell& Spellcaster::getSpellFromBook(const std::string& spellName) {
 
     if ( it == m_spellBook.end() ) {
         throw NoSuchSpellInBook();
-    } 
-    if ( it->second.getType() != Spell::TYPE_BATTLE ) {
-        throw AttackWithNotBattleSpell();
     }
 
     return it->second;
 }
 
-void Spellcaster::attack(Unit& enemy, const std::string& spellName) {
+void Spellcaster::cast(Unit& enemy, const std::string& spellName) {
     ensureIsAlive();
 
     Spell& spell = getSpellFromBook(spellName);
+    if ( spell.getType() != Spell::TYPE_BATTLE ) {
+        throw AttackWithNotBattleSpell();
+    }
+
     Damage dmg = Damage(spell.getValue(), Damage::TYPE_MAGIC);
     getState()->attack(enemy, dmg);
 }
 
-void Spellcaster::addSpellToBook(Spell* spell) {
-    m_spellBook.insert( std::pair<std::string, Spell>(spell->getName(), *spell) );
+void Spellcaster::addSpellToBook(Spell& spell) {
+    m_spellBook.insert(std::pair<std::string, Spell>(spell.getName(), spell));
 }
 
 void Spellcaster::showSpellBook() const {

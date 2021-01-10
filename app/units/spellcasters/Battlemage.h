@@ -1,7 +1,7 @@
 #ifndef BATTLEMAGE_H
 #define BATTLEMAGE_H
 
-class Spellcaster;
+#include "../Spellcaster.h"
 
 class Battlemage : public Spellcaster {
     protected:
@@ -9,7 +9,7 @@ class Battlemage : public Spellcaster {
         virtual ~Battlemage();
     
     public:
-        void addSpellToBook(Spell* spell);
+        void addSpellToBook(Spell& spell);
 };
 
 #endif //BATTLEMAGE_H

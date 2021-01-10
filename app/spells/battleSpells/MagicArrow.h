@@ -1,7 +1,7 @@
 #ifndef MAGICARROW_H
 #define MAGICARROW_H
 
-class Spell;
+#include "../Spell.h"
 
 class MagicArrow : public Spell {
     public:

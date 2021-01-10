@@ -9,7 +9,7 @@ class Healer : public Spellcaster {
         virtual ~Healer();
     
     public:
-        void addSpellToBook(Spell* spell);
+        void addSpellToBook(Spell& spell);
 };
 
 #endif //HEALER_H

@@ -16,7 +16,9 @@ class Unit {
             TYPE_BATTLEMAGE,
             TYPE_HEALER,
             TYPE_SOLDIER,
-            TYPE_WEREWOLF
+            TYPE_WEREWOLF,
+            TYPE_WIZARD,
+            TYPE_DEMON
         };
 
     private:
@@ -50,12 +52,12 @@ class Unit {
         void addUnitType(Type type);
         void addHitPoints(int hp);
         void reduceHitPoints(int hp);
-        virtual void attack(Unit& enemy);
-        virtual void counterAttack(Unit& enemy);
-        virtual void takeDamage(const Damage& dmg);
-        virtual void turnIntoWolf();
-        virtual void turnIntoHuman();
-        virtual void transform(Unit& unit);
+        void attack(Unit& enemy);
+        void counterAttack(Unit& enemy);
+        void takeDamage(const Damage& dmg);
+        void turnIntoWolf();
+        void turnIntoHuman();
+        void transform(Unit& unit);
 };
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit);
