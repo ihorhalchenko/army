@@ -3,7 +3,10 @@
 #include "../counterAttacks/DefaultCounterAttack.h"
 #include "DefaultState.h"
 
-DefaultState::DefaultState(Unit* unit) : State(unit) {}
+DefaultState::DefaultState(Unit* unit) : State(unit) {
+    setName(State::STATE_DEFAULT);
+}
+
 DefaultState::~DefaultState() {}
 
 void DefaultState::attack(Unit& enemy, const Damage& dmg) {

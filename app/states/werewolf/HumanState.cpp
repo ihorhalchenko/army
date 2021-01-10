@@ -5,14 +5,18 @@
 #include "HumanState.h"
 
 HumanState::HumanState(Unit* unit) : WerewolfState(unit) {
-    int hp = unit->getHitPoints() / WOLF_MULTIPLICATOR;
-    if ( hp == 0 ) {
-        throw UnitIsDead();
-    }
+    setName(State::STATE_WEREWOLF_HUMAN);
 
-    unit->setHitPointsLimit(unit->getHitPointsLimit() / WOLF_MULTIPLICATOR);
-    unit->setHitPoints(hp);
-    unit->setDamageValue(unit->getDamageValue() / WOLF_MULTIPLICATOR);
+    if ( unit->getState()->getName() == State::STATE_WEREWOLF_WOLF ) {
+        int hp = unit->getHitPoints() / WOLF_MULTIPLICATOR;
+        if ( hp == 0 ) {
+            throw UnitIsDead();
+        }
+
+        unit->setHitPointsLimit(unit->getHitPointsLimit() / WOLF_MULTIPLICATOR);
+        unit->setHitPoints(hp);
+        unit->setDamageValue(unit->getDamageValue() / WOLF_MULTIPLICATOR);
+    }
 }
 
 HumanState::~HumanState() {}

@@ -10,6 +10,7 @@ class WerewolfState : public DefaultState {
 
         virtual void turnIntoWolf();
         virtual void turnIntoHuman();
+        virtual void transform(Unit* unit);
 };
 
 #endif //WEREWOLFSTATE_H

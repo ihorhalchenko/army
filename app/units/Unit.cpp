@@ -136,6 +136,13 @@ void Unit::turnIntoHuman() {
     m_state->turnIntoHuman();
 }
 
+void Unit::transform(Unit& unit) {
+    ensureIsAlive();
+    unit.ensureIsAlive();
+
+    m_state->transform(&unit);
+}
+
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {
     out << "Name: " << unit.getName() << std::endl;
     out << "Damage: " << unit.getDamageValue() << std::endl;

@@ -30,3 +30,16 @@ void State::turnIntoHuman() {
  Unit* State::getUnit() const {
      return m_unit;
  }
+
+ void State::transform(Unit* unit) {
+     throw UnitCantDoThis();
+ }
+
+ void State::setName(Name type) {
+    m_name = type;
+}
+
+State::Name State::getName() const {
+    return m_name;
+}
+

@@ -32,7 +32,6 @@ class Unit {
         virtual ~Unit();
 
         void ensureIsAlive();
-        void addUnitType(Type type);
         std::set<Type> getUnitType() const;
 
     public:
@@ -48,6 +47,7 @@ class Unit {
         void setHitPointsLimit(int hp);
         void setDamageValue(int value);
 
+        void addUnitType(Type type);
         void addHitPoints(int hp);
         void reduceHitPoints(int hp);
         virtual void attack(Unit& enemy);
@@ -55,6 +55,7 @@ class Unit {
         virtual void takeDamage(const Damage& dmg);
         virtual void turnIntoWolf();
         virtual void turnIntoHuman();
+        virtual void transform(Unit& unit);
 };
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit);

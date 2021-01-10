@@ -16,3 +16,9 @@ void WerewolfState::turnIntoHuman() {
     Unit* unit = getUnit();
     getUnit()->setState(new HumanState(unit));
 }
+
+void WerewolfState::transform(Unit* unit) {
+    // TODO: Except Vampire
+    unit->addUnitType(Unit::TYPE_WEREWOLF);
+    unit->setState(new HumanState(unit));
+}
