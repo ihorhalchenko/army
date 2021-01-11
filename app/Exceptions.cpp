@@ -15,3 +15,7 @@ const char*  NoSuchSpellInBook::what() const throw() {
 const char*  UnitCantDoThis::what() const throw() {
     return "Unit can't do this.";
 }
+
+const char*  DemonsLimitIsReached::what() const throw() {
+    return "Demons limit has been reached already.";
+}

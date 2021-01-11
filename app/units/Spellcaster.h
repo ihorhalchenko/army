@@ -4,14 +4,13 @@
 #include <iostream>
 #include <map>
 #include "Unit.h"
-
-class Spell;
+#include "../spells/Spell.h"
 
 class Spellcaster: public Unit {
     private:
         std::map<std::string, Spell> m_spellBook;
     protected:
-        Spellcaster(const std::string& name, int damageValue = SC_DEFAULT_DAMAGE_VALUE, int hitPoints = SC_DEFAULT_HIT_POINTS, int hitPointsLimit = SC_DEFAULT_HIT_POINTS_LIMIT);
+        Spellcaster(const std::string& name, int damageValue = SC_DAMAGE_VALUE, int hitPoints = SC_HIT_POINTS, int hitPointsLimit = SC_HIT_POINTS_LIMIT);
         virtual ~Spellcaster();
 
         std::map<std::string, Spell>& getSpellBook();

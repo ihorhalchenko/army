@@ -1,95 +1,120 @@
 #include <iostream>
+#include <set>
 #include "Exceptions.h"
 #include "units/race/Soldier.h"
 #include "units/race/Werewolf.h"
 #include "units/race/Wizard.h"
+#include "units/race/Warlock.h"
+#include "units/race/Demon.h"
 
 int main() {
     try {
-        Soldier knight("Vasil");
+        Soldier soldier("Vasil");
         Werewolf werewolf("Semen");
         Wizard wizard("Petro");
+        std::set<Wizard> wizards;
+        Warlock warlock("Gnat");
+        Demon* demon1 = warlock.callDemon();
+        Demon* demon2 = warlock.callDemon();
+        Demon* demon3 = warlock.callDemon();
 
-        std::cout << knight << std::endl;
+
         std::cout << wizard << std::endl;        
+
+        
+        wizards.insert(wizard);
+
+        soldier.attack(wizard);
+
+        std::cout << wizard << std::endl;       
+
+/*
+        std::cout << *demon1 << std::endl;        
+        
+        std::cout << soldier << std::endl;   
+        
 
         std::cout << "2----------------------------" << std::endl;
 
-        wizard.cast(knight, "Magic Arrow");
+        demon1->attack(soldier);
 
-        std::cout << knight << std::endl;
-        std::cout << wizard << std::endl; 
+        std::cout << *demon1 << std::endl;        
+        std::cout << soldier << std::endl;
 
-        std::cout << "3----------------------------" << std::endl;
+        std::cout << "2----------------------------" << std::endl;
+        soldier.attack(*demon1);
+        std::cout << *demon1 << std::endl;        
+        std::cout << soldier << std::endl;
 
-        //wizard.cast(knight, "Prayer");
-
-        std::cout << knight << std::endl;
-        std::cout << wizard << std::endl; 
+        std::cout << "2----------------------------" << std::endl;
+        soldier.attack(*demon1);
+        std::cout << *demon1 << std::endl;        
+        std::cout << soldier << std::endl;
+      */  
 
 /*
-        std::cout << knight << std::endl;
+        std::cout << soldier << std::endl;
         std::cout << wizard << std::endl;        
         
         std::cout << "1----------------------------" << std::endl;
 
-        wizard.attack(knight);
+        wizard.attack(soldier);
 
-        std::cout << knight << std::endl;
+        std::cout << soldier << std::endl;
         std::cout << wizard << std::endl; 
 
         std::cout << "2----------------------------" << std::endl;
 
-        wizard.cast(knight, "Magic Arrow");
+        wizard.cast(soldier, "Magic Arrow");
 
-        std::cout << knight << std::endl;
+        std::cout << soldier << std::endl;
         std::cout << wizard << std::endl; 
 
         std::cout << "3----------------------------" << std::endl;
 
-        knight.attack(wizard);
+        soldier.attack(wizard);
 
-        std::cout << knight << std::endl;
+        std::cout << soldier << std::endl;
         std::cout << wizard << std::endl; 
 
         std::cout << "4----------------------------" << std::endl;
         werewolf.transform(wizard);
         wizard.turnIntoWolf();
-        wizard.attack(knight);
-        std::cout << knight << std::endl;
+        wizard.attack(soldier);
+        std::cout << soldier << std::endl;
         std::cout << wizard << std::endl; 
 
         std::cout << "4----------------------------" << std::endl;
-        wizard.cast(knight, "Magic Arrow");
-        std::cout << knight << std::endl;
+        wizard.cast(soldier, "Magic Arrow");
+        std::cout << soldier << std::endl;
         std::cout << wizard << std::endl; 
 */
 
 
         /*
-        std::cout << knight << std::endl;
+        std::cout << soldier << std::endl;
         std::cout << werewolf << std::endl;
 
-        werewolf.attack(knight);
+        werewolf.attack(soldier);
 
-        std::cout << knight << std::endl;
+        std::cout << soldier << std::endl;
         std::cout << werewolf << std::endl;
 
         std::cout << "----------------------------" << std::endl;
         werewolf.turnIntoHuman();
-        werewolf.transform(knight);
-        knight.turnIntoWolf();
+        werewolf.transform(soldier);
+        soldier.turnIntoWolf();
         werewolf.turnIntoWolf();
-        std::cout << knight << std::endl;
+        std::cout << soldier << std::endl;
         std::cout << werewolf << std::endl;
         std::cout << "----------------------------" << std::endl;
-        knight.attack(werewolf);
-        std::cout << knight << std::endl;
+        soldier.attack(werewolf);
+        std::cout << soldier << std::endl;
         std::cout << werewolf << std::endl;
         std::cout << "----------------------------" << std::endl;
-        knight.turnIntoHuman();
+        soldier.turnIntoHuman();
         werewolf.turnIntoHuman();
-        std::cout << knight << std::endl;
+        std::cout << soldier << std::endl;
         std::cout << werewolf << std::endl;
         */
     } catch(std::exception& e) {

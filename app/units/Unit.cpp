@@ -101,6 +101,7 @@ void Unit::reduceHitPoints(int hp) {
 
     if ( hp > m_hitPoints ) {
         m_hitPoints = 0;
+        notifySubscribers();
         return;
     }
     m_hitPoints -= hp;

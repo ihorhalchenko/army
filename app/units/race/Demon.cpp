@@ -1,15 +1,14 @@
 #include "../../Exceptions.h"
-#include "../Unit.h"
 #include "../../states/DefaultState.h"
 #include "../../damage/Damage.h"
 #include "../../spells/battleSpells/MagicArrow.h"
 #include "Demon.h"
 
-Demon::Demon(const std::string& name) : Unit(name) {
+Demon::Demon() : Unit(DEMON_NAME, DEMON_DAMAGE_VALUE, DEMON_HIT_POINTS, DEMON_HIT_POINTS_LIMIT) {
     addUnitType(Unit::TYPE_DEMON);
     setState(new DefaultState(this));
     MagicArrow ma = MagicArrow();
-    m_spellBook.insert(std::pair<std::string, Spell>("Magic Arrow", ma));
+    m_spellBook.insert(std::pair<std::string, Spell>(ma.getName(), ma));
 }
 
 Demon::~Demon() {}

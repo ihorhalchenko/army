@@ -25,4 +25,9 @@ class UnitCantDoThis : public ArmyException {
         virtual const char* what() const throw();
 };
 
+class DemonsLimitIsReached : public ArmyException {
+    public:
+        virtual const char* what() const throw();
+};
+
 #endif //ARMY_EXCEPTIONS_H_H

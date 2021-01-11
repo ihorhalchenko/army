@@ -4,11 +4,12 @@
 #include <iostream>
 #include <set>
 #include "../macros.h"
+#include "../observation/Observable.h"
 
 class State;
 class Damage;
 
-class Unit {
+class Unit : public Observable {
     public:
         enum Type {
             TYPE_UNIT,
@@ -18,7 +19,8 @@ class Unit {
             TYPE_SOLDIER,
             TYPE_WEREWOLF,
             TYPE_WIZARD,
-            TYPE_DEMON
+            TYPE_DEMON,
+            TYPE_WARLOCK
         };
 
     private:
@@ -30,7 +32,7 @@ class Unit {
         std::set<Type> m_unitTypes;
 
     protected:
-        Unit(const std::string& name, int damageValue = UNIT_DEFAULT_DAMAGE_VALUE, int hitPoints = UNIT_DEFAULT_HIT_POINTS, int hitPointsLimit = UNIT_DEFAULT_HIT_POINTS_LIMIT);
+        Unit(const std::string& name, int damageValue = UNIT_DAMAGE_VALUE, int hitPoints = UNIT_HIT_POINTS, int hitPointsLimit = UNIT_HIT_POINTS_LIMIT);
         virtual ~Unit();
 
         void ensureIsAlive();

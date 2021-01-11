@@ -3,9 +3,8 @@
 
 #include <iostream>
 #include <map>
-
-class Unit;
-class Spell;
+#include "../Unit.h"
+#include "../../spells/Spell.h"
 
 class Demon : public Unit {
     private:
@@ -13,7 +12,7 @@ class Demon : public Unit {
         Spell& getSpellFromBook(const std::string& spellName);
         
     public:
-        Demon(const std::string& name);
+        Demon();
         virtual ~Demon();
 
         void cast(Unit& enemy, const std::string& spellName);

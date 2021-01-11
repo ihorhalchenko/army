@@ -1,5 +1,4 @@
 #include "../Exceptions.h"
-#include "../spells/Spell.h"
 #include "../states/State.h"
 #include "../damage/Damage.h"
 #include "SpellCaster.h"
