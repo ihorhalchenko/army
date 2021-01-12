@@ -1,12 +1,12 @@
 #ifndef IOBSERVER_H
 #define IOBSERVER_H
 
-class Observable;
+class Unit;
 
 class IObserver {
     public:
         virtual ~IObserver();
-        virtual void update(Observable* observable) = 0;
+        virtual void update(Unit* unit) = 0;
 };
 
 #endif //IOBSERVER_H

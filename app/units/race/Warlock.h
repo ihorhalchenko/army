@@ -13,9 +13,9 @@ class Warlock : public Unit, public IObserver  {
         Warlock(const std::string& name);
         virtual ~Warlock();
 
-        Demon* callDemon();
+        Demon callDemon();
 
-        virtual void update(Observable* observable);
+        virtual void update(Unit* unit);
 };
 
 #endif //WARLOCK_H

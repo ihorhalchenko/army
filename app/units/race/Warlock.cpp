@@ -10,20 +10,26 @@ Warlock::Warlock(const std::string& name) : Unit(name) {
 
 Warlock::~Warlock() {}
 
-Demon* Warlock::callDemon() {
+Demon Warlock::callDemon() {
     if ( m_demons.size() >= WARLOCK_DEMONS_LIMIT ) {
         throw DemonsLimitIsReached();
     }
 
-    Demon* demon = new Demon();
-    demon->subscribe(this);
-    m_demons.push_back(demon);
+    Demon demon = Demon();
+    demon.subscribe(this);
+    m_demons.push_back(&demon);
     
     return demon;
 }
 
-void Warlock::update(Observable* observable) {
-    Demon* demon = dynamic_cast<Demon*>(observable);
-    m_demons.remove(demon);
-    delete demon;
+void Warlock::update(Unit* unit) {
+    std::set<Type> unitTypes = unit->getUnitType();
+    if ( unitTypes.find(TYPE_DEMON) == unitTypes.end() ) {
+        return;
+    }
+
+    Demon* demon = dynamic_cast<Demon*>(unit);
+    if ( demon ) {
+        m_demons.remove(demon);
+    }
 }

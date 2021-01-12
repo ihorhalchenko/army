@@ -12,21 +12,19 @@ int main() {
         Soldier soldier("Vasil");
         Werewolf werewolf("Semen");
         Wizard wizard("Petro");
-        std::set<Wizard> wizards;
         Warlock warlock("Gnat");
-        Demon* demon1 = warlock.callDemon();
-        Demon* demon2 = warlock.callDemon();
-        Demon* demon3 = warlock.callDemon();
-
+        Demon demon1 = warlock.callDemon();
+        Demon demon2 = warlock.callDemon();
+        Demon demon3 = warlock.callDemon();
 
         std::cout << wizard << std::endl;        
 
-        
-        wizards.insert(wizard);
-
-        soldier.attack(wizard);
+        soldier.attack(demon1);
 
         std::cout << wizard << std::endl;       
+        soldier.attack(demon1);
+        Demon demon4 = warlock.callDemon();
+        std::cout << demon1 << std::endl;       
 
 /*
         std::cout << *demon1 << std::endl;        

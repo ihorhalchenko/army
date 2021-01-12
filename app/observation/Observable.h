@@ -4,6 +4,7 @@
 #include <list>
 
 class IObserver;
+class Unit;
 
 class Observable {
     private:
@@ -14,7 +15,7 @@ class Observable {
         virtual ~Observable();
         virtual void subscribe(IObserver* observer);
         virtual void unsubscribe(IObserver* observer);
-        virtual void notifySubscribers();
+        virtual void notifySubscribers(Unit* unit);
 };
 
 #endif //OBSERVABLE_H

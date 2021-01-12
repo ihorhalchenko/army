@@ -21,7 +21,9 @@ Unit::~Unit() {
 
 void Unit::ensureIsAlive() {
     if ( m_hitPoints == 0 ) {
-       throw UnitIsDead();
+       std::cout << "Unit " << this->getName() << " is dead." << std::endl;
+       std::cout << std::endl;
+       //throw UnitIsDead();
    }
 }
 
@@ -101,7 +103,7 @@ void Unit::reduceHitPoints(int hp) {
 
     if ( hp > m_hitPoints ) {
         m_hitPoints = 0;
-        notifySubscribers();
+        notifySubscribers(this);
         return;
     }
     m_hitPoints -= hp;

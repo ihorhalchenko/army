@@ -36,7 +36,6 @@ class Unit : public Observable {
         virtual ~Unit();
 
         void ensureIsAlive();
-        std::set<Type> getUnitType() const;
 
     public:
         Damage* getDamage() const;
@@ -45,6 +44,7 @@ class Unit : public Observable {
         int getHitPointsLimit() const;
         const std::string& getName() const;
         State* getState() const;
+        std::set<Type> getUnitType() const;
 
         void setState(State* state);
         void setHitPoints(int hp);
