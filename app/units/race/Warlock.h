@@ -13,7 +13,7 @@ class Warlock : public Unit, public IObserver  {
         Warlock(const std::string& name);
         virtual ~Warlock();
 
-        Demon callDemon();
+        Demon callDemon(const std::string& name);
 
         virtual void update(Unit* unit);
 };

@@ -13,6 +13,7 @@ HumanState::HumanState(Unit* unit) : WerewolfState(unit) {
             std::cout << "Unit " << unit->getName() << " is dead." << std::endl;
             std::cout << std::endl;
             //throw UnitIsDead();
+            unit->notifySubscribers(unit);
         }
 
         unit->setHitPointsLimit(unit->getHitPointsLimit() / WOLF_MULTIPLICATOR);

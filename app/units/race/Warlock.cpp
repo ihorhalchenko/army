@@ -10,12 +10,12 @@ Warlock::Warlock(const std::string& name) : Unit(name) {
 
 Warlock::~Warlock() {}
 
-Demon Warlock::callDemon() {
+Demon Warlock::callDemon(const std::string& name) {
     if ( m_demons.size() >= WARLOCK_DEMONS_LIMIT ) {
         throw DemonsLimitIsReached();
     }
 
-    Demon demon = Demon();
+    Demon demon = Demon(name);
     demon.subscribe(this);
     m_demons.push_back(&demon);
     

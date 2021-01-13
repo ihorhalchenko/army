@@ -6,6 +6,6 @@ DefaultCounterAttack::DefaultCounterAttack() {}
 DefaultCounterAttack::~DefaultCounterAttack() {}
 
 void DefaultCounterAttack::counterAttack(Unit& counterAttacker, Unit& enemy, const Damage& attackDmg) {
-    Damage dmg = Damage(attackDmg.getValue() / 2, attackDmg.getType());
+    Damage dmg = Damage(attackDmg.getValue() * COUNTER_ATTACK_MULTIPLICATOR, attackDmg.getType());
     enemy.takeDamage(dmg);
 }

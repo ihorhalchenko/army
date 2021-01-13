@@ -16,11 +16,15 @@ Spell::Type Spell::getType() const {
 }
 
 std::string Spell::getStringType() const {
-    if (m_type == TYPE_BATTLE) {
-        return "Battle spell";
-    } else if (m_type == TYPE_HEALING) {
-        return "Healing spell";
+    std::string result = "Not defined";
+
+    if ( m_type == TYPE_BATTLE ) {
+        result = "Battle spell";
+    } else if ( m_type == TYPE_HEALING ) {
+        result = "Healing spell";
     }
+
+    return result;
 }
 
 std::ostream& operator<<(std::ostream& out, const Spell& spell) {

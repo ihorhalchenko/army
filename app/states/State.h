@@ -9,7 +9,8 @@ class State {
         enum Name {
             STATE_DEFAULT,
             STATE_WEREWOLF_HUMAN,
-            STATE_WEREWOLF_WOLF
+            STATE_WEREWOLF_WOLF,
+            STATE_VAMPIRE
         };
 
     private:

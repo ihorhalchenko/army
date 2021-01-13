@@ -20,7 +20,9 @@ class Unit : public Observable {
             TYPE_WEREWOLF,
             TYPE_WIZARD,
             TYPE_DEMON,
-            TYPE_WARLOCK
+            TYPE_WARLOCK,
+            TYPE_NECROMANCER,
+            TYPE_VAMPIRE
         };
 
     private:
@@ -54,9 +56,9 @@ class Unit : public Observable {
         void addUnitType(Type type);
         void addHitPoints(int hp);
         void reduceHitPoints(int hp);
-        void attack(Unit& enemy);
-        void counterAttack(Unit& enemy);
-        void takeDamage(const Damage& dmg);
+        virtual void attack(Unit& enemy);
+        virtual void counterAttack(Unit& enemy);
+        virtual void takeDamage(const Damage& dmg);
         void turnIntoWolf();
         void turnIntoHuman();
         void transform(Unit& unit);

@@ -8,7 +8,7 @@ class Unit;
 
 class Observable {
     private:
-        std::list<IObserver*> m_observers;
+        std::set<IObserver*> m_observers;
 
     public:
         Observable();

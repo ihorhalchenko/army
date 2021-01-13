@@ -12,7 +12,7 @@ class Demon : public Unit {
         Spell& getSpellFromBook(const std::string& spellName);
         
     public:
-        Demon();
+        Demon(const std::string& name);
         virtual ~Demon();
 
         void cast(Unit& enemy, const std::string& spellName);

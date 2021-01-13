@@ -6,25 +6,47 @@
 #include "units/race/Wizard.h"
 #include "units/race/Warlock.h"
 #include "units/race/Demon.h"
+#include "units/race/Necromancer.h"
+#include "units/race/Vampire.h"
 
 int main() {
     try {
         Soldier soldier("Vasil");
         Werewolf werewolf("Semen");
         Wizard wizard("Petro");
+
         Warlock warlock("Gnat");
-        Demon demon1 = warlock.callDemon();
-        Demon demon2 = warlock.callDemon();
-        Demon demon3 = warlock.callDemon();
+        Demon demon1 = warlock.callDemon("Nif-nif");
+        Demon demon2 = warlock.callDemon("Naf-naf");
+        Demon demon3 = warlock.callDemon("Nuf-nuf");
 
-        std::cout << wizard << std::endl;        
+        Necromancer necromancer = Necromancer("Galya");
+        Vampire vampire = Vampire("Sosok");
 
-        soldier.attack(demon1);
+        werewolf.attack(soldier);
+        werewolf.attack(soldier);
+        werewolf.attack(soldier);
+        demon1.attack(soldier);
 
-        std::cout << wizard << std::endl;       
-        soldier.attack(demon1);
-        Demon demon4 = warlock.callDemon();
-        std::cout << demon1 << std::endl;       
+        std::cout << soldier << std::endl;        
+        std::cout << vampire << std::endl;        
+
+        soldier.attack(vampire);
+
+        std::cout << soldier << std::endl;       
+        std::cout << vampire << std::endl;   
+
+        vampire.attack(soldier);
+
+        
+        std::cout << soldier << std::endl;       
+        std::cout << vampire << std::endl;   
+
+        vampire.attack(soldier);
+
+        std::cout << soldier << std::endl;       
+        std::cout << vampire << std::endl;   
+
 
 /*
         std::cout << *demon1 << std::endl;        

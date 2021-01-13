@@ -101,7 +101,7 @@ void Unit::addHitPoints(int hp) {
 void Unit::reduceHitPoints(int hp) {
     ensureIsAlive();
 
-    if ( hp > m_hitPoints ) {
+    if ( hp >= m_hitPoints ) {
         m_hitPoints = 0;
         notifySubscribers(this);
         return;
