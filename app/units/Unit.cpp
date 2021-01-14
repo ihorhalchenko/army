@@ -39,6 +39,13 @@ void Unit::addUnitType(Unit::Type type) {
     m_unitTypes.insert(type);
 }
 
+bool Unit::isUnitHasType(Type unitType) {
+    if ( m_unitTypes.find(unitType) == m_unitTypes.end() ) {
+        return false;
+    }
+    return true;
+}
+
 std::set<Unit::Type> Unit::getUnitType() const {
     return m_unitTypes;
 }
@@ -68,6 +75,11 @@ State* Unit::getState() const {
 }
 
 void Unit::setHitPoints(int hp) {
+    if ( hp <= 0 ) {
+        notifySubscribers(this);
+        m_hitPoints = 0;
+        return;
+    }
     m_hitPoints = hp;
 }
 
@@ -92,21 +104,20 @@ void Unit::addHitPoints(int hp) {
     int result = m_hitPoints + hp;
 
     if ( result > m_hitPointsLimit ) {
-        m_hitPoints = m_hitPointsLimit;
+        setHitPoints(m_hitPointsLimit);
         return;
     }
-    m_hitPoints = result;
+    setHitPoints(result);
 }
 
 void Unit::reduceHitPoints(int hp) {
     ensureIsAlive();
 
     if ( hp >= m_hitPoints ) {
-        m_hitPoints = 0;
-        notifySubscribers(this);
+        setHitPoints(0);
         return;
     }
-    m_hitPoints -= hp;
+    setHitPoints(m_hitPoints - hp);
 }
 
 void Unit::attack(Unit& enemy) {
@@ -117,6 +128,11 @@ void Unit::attack(Unit& enemy) {
 
 void Unit::counterAttack(Unit& enemy) {
     ensureIsAlive();
+
+    std::set<Type> unitTypes = enemy.getUnitType();
+    if ( unitTypes.find(TYPE_ROGUE) != unitTypes.end() ) {
+        return;
+    }
 
     m_state->counterAttack(enemy, *m_damage);
 }

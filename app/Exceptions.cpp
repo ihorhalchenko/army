@@ -19,3 +19,7 @@ const char*  UnitCantDoThis::what() const throw() {
 const char*  DemonsLimitIsReached::what() const throw() {
     return "Demons limit has been reached already.";
 }
+
+const char*  ForbiddenTransformation::what() const throw() {
+    return "Such transformation is forbidden.";
+}

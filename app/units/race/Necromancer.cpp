@@ -1,7 +1,8 @@
 #include "../../states/DefaultState.h"
 #include "Necromancer.h"
 
-Necromancer::Necromancer(const std::string& name) : Unit(name) {
+Necromancer::Necromancer(const std::string& name) : Spellcaster(name) {
+    addUnitType(Unit::TYPE_UNDEAD);
     addUnitType(Unit::TYPE_NECROMANCER);
     setState(new DefaultState(this));
 }

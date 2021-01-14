@@ -8,10 +8,14 @@
 #include "units/race/Demon.h"
 #include "units/race/Necromancer.h"
 #include "units/race/Vampire.h"
+#include "units/race/Rogue.h"
+#include "units/race/Berserker.h"
 
 int main() {
     try {
         Soldier soldier("Vasil");
+        Soldier soldier1("Vasil1");
+        Soldier soldier2("Vasil2");
         Werewolf werewolf("Semen");
         Wizard wizard("Petro");
 
@@ -22,30 +26,16 @@ int main() {
 
         Necromancer necromancer = Necromancer("Galya");
         Vampire vampire = Vampire("Sosok");
+        Rogue rogue = Rogue("Alyosha");
+        Berserker berserker = Berserker("Barry");
 
-        werewolf.attack(soldier);
-        werewolf.attack(soldier);
-        werewolf.attack(soldier);
-        demon1.attack(soldier);
+        soldier.attack(soldier1);
 
-        std::cout << soldier << std::endl;        
-        std::cout << vampire << std::endl;        
 
-        soldier.attack(vampire);
+        std::cout << werewolf << std::endl;
+        std::cout << demon1 << std::endl;
 
-        std::cout << soldier << std::endl;       
-        std::cout << vampire << std::endl;   
 
-        vampire.attack(soldier);
-
-        
-        std::cout << soldier << std::endl;       
-        std::cout << vampire << std::endl;   
-
-        vampire.attack(soldier);
-
-        std::cout << soldier << std::endl;       
-        std::cout << vampire << std::endl;   
 
 
 /*

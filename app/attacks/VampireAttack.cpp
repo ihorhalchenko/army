@@ -13,7 +13,7 @@ void VampireAttack::attack(Unit& attacker, Unit& enemy, const Damage& dmg) {
         hpToTake = enemyHp;
     }
 
-    enemy.takeDamage(dmg);
     attacker.addHitPoints(hpToTake);
+    enemy.takeDamage(dmg);
     enemy.counterAttack(attacker);
 }

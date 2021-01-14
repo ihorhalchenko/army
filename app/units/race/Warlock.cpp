@@ -23,13 +23,10 @@ Demon Warlock::callDemon(const std::string& name) {
 }
 
 void Warlock::update(Unit* unit) {
-    std::set<Type> unitTypes = unit->getUnitType();
-    if ( unitTypes.find(TYPE_DEMON) == unitTypes.end() ) {
-        return;
-    }
-
-    Demon* demon = dynamic_cast<Demon*>(unit);
-    if ( demon ) {
-        m_demons.remove(demon);
+    if ( unit->isUnitHasType(TYPE_DEMON) ) {
+        Demon* demon = dynamic_cast<Demon*>(unit);
+        if ( demon ) {
+            m_demons.remove(demon);
+        }
     }
 }

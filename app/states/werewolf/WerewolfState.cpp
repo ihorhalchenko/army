@@ -1,3 +1,4 @@
+#include "../../Exceptions.h"
 #include "../../units/Unit.h"
 #include "../State.h"
 #include "HumanState.h"
@@ -18,7 +19,10 @@ void WerewolfState::turnIntoHuman() {
 }
 
 void WerewolfState::transform(Unit* unit) {
-    // TODO: Except Vampire
+    if ( unit->isUnitHasType(Unit::TYPE_VAMPIRE) ) {
+        throw ForbiddenTransformation();
+    }
+
     unit->addUnitType(Unit::TYPE_WEREWOLF);
     unit->setState(new HumanState(unit));
 }

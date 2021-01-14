@@ -9,15 +9,9 @@ HumanState::HumanState(Unit* unit) : WerewolfState(unit) {
 
     if ( unit->getState()->getName() == State::STATE_WEREWOLF_WOLF ) {
         int hp = unit->getHitPoints() / WOLF_MULTIPLICATOR;
-        if ( hp == 0 ) {
-            std::cout << "Unit " << unit->getName() << " is dead." << std::endl;
-            std::cout << std::endl;
-            //throw UnitIsDead();
-            unit->notifySubscribers(unit);
-        }
 
-        unit->setHitPointsLimit(unit->getHitPointsLimit() / WOLF_MULTIPLICATOR);
         unit->setHitPoints(hp);
+        unit->setHitPointsLimit(unit->getHitPointsLimit() / WOLF_MULTIPLICATOR);
         unit->setDamageValue(unit->getDamageValue() / WOLF_MULTIPLICATOR);
     }
 }

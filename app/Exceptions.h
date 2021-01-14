@@ -1,5 +1,5 @@
-#ifndef ARMY_EXCEPTIONS_H_H
-#define ARMY_EXCEPTIONS_H_H
+#ifndef ARMY_EXCEPTIONS_H
+#define ARMY_EXCEPTIONS_H
 
 #include <iostream>
 
@@ -30,4 +30,9 @@ class DemonsLimitIsReached : public ArmyException {
         virtual const char* what() const throw();
 };
 
-#endif //ARMY_EXCEPTIONS_H_H
+class ForbiddenTransformation : public ArmyException {
+    public:
+        virtual const char* what() const throw();
+};
+
+#endif //ARMY_EXCEPTIONS_H

@@ -1,3 +1,5 @@
+#include "../Exceptions.h"
+#include "../units/Unit.h"
 #include "../attacks/VampireAttack.h"
 #include "../counterAttacks/VampireCounterAttack.h"
 #include "VampireState.h"
@@ -16,4 +18,13 @@ void VampireState::attack(Unit& enemy, const Damage& dmg) {
 void VampireState::counterAttack(Unit& enemy, const Damage& attackDmg) {
     VampireCounterAttack vca = VampireCounterAttack();
     vca.counterAttack(*(getUnit()), enemy, attackDmg);
+}
+
+void VampireState::transform(Unit* unit) {
+    if ( unit->isUnitHasType(Unit::TYPE_WEREWOLF) ) {
+        throw ForbiddenTransformation();
+    }
+    
+    unit->addUnitType(Unit::TYPE_VAMPIRE);
+    unit->setState(new VampireState(unit));
 }

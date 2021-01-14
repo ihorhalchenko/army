@@ -22,7 +22,10 @@ class Unit : public Observable {
             TYPE_DEMON,
             TYPE_WARLOCK,
             TYPE_NECROMANCER,
-            TYPE_VAMPIRE
+            TYPE_VAMPIRE,
+            TYPE_UNDEAD,
+            TYPE_ROGUE,
+            TYPE_BERSERKER
         };
 
     private:
@@ -54,6 +57,7 @@ class Unit : public Observable {
         void setDamageValue(int value);
 
         void addUnitType(Type type);
+        bool isUnitHasType(Type unitType);
         void addHitPoints(int hp);
         void reduceHitPoints(int hp);
         virtual void attack(Unit& enemy);

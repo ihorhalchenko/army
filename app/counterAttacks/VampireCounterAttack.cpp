@@ -15,6 +15,6 @@ void VampireCounterAttack::counterAttack(Unit& counterAttacker, Unit& enemy, con
     }
 
     Damage dmg = Damage(counterAttackDmg, attackDmg.getType());
-    enemy.takeDamage(dmg);
     counterAttacker.addHitPoints(hpToTake);
+    enemy.takeDamage(dmg);
 }
