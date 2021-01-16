@@ -23,6 +23,17 @@ Spell& Spellcaster::getSpellFromBook(const std::string& spellName) {
     return it->second;
 }
 
+void Spellcaster::heal(Unit& patient, const std::string& spellName) {
+    ensureIsAlive();
+
+    Spell& spell = getSpellFromBook(spellName);
+    if ( spell.getType() != Spell::TYPE_HEALING ) {
+        throw HealingWithNoHealSpell();
+    }
+
+    patient.addHitPoints(spell.getValue());
+}
+
 void Spellcaster::cast(Unit& enemy, const std::string& spellName) {
     ensureIsAlive();
 

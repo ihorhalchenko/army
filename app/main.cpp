@@ -10,6 +10,8 @@
 #include "units/race/Vampire.h"
 #include "units/race/Rogue.h"
 #include "units/race/Berserker.h"
+#include "units/race/Healer.h"
+#include "units/race/Priest.h"
 
 int main() {
     try {
@@ -18,6 +20,7 @@ int main() {
         Soldier soldier2("Vasil2");
         Werewolf werewolf("Semen");
         Wizard wizard("Petro");
+        Healer healer("Kisa");
 
         Warlock warlock("Gnat");
         Demon demon1 = warlock.callDemon("Nif-nif");
@@ -28,12 +31,29 @@ int main() {
         Vampire vampire = Vampire("Sosok");
         Rogue rogue = Rogue("Alyosha");
         Berserker berserker = Berserker("Barry");
+        Priest priest = Priest("Ilya");
 
-        soldier.attack(soldier1);
+        std::cout << soldier << std::endl;
+        std::cout << priest << std::endl;
+
+        priest.cast(soldier, "Magic Arrow");
+
+        std::cout << soldier << std::endl;
+        std::cout << priest << std::endl;
+
+        std::cout << "----------------------------" << std::endl;
 
 
-        std::cout << werewolf << std::endl;
-        std::cout << demon1 << std::endl;
+        std::cout << necromancer << std::endl;
+        std::cout << priest << std::endl;
+
+        priest.cast(necromancer, "Magic Arrow");
+
+        std::cout << necromancer << std::endl;
+        std::cout << priest << std::endl;
+
+        std::cout << "----------------------------" << std::endl;
+
 
 
 

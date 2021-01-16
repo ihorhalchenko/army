@@ -10,7 +10,8 @@ class State {
             STATE_DEFAULT,
             STATE_WEREWOLF_HUMAN,
             STATE_WEREWOLF_WOLF,
-            STATE_VAMPIRE
+            STATE_VAMPIRE,
+            STATE_PRIEST
         };
 
     private:

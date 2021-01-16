@@ -1,12 +1,12 @@
 #ifndef WARLOCK_H
 #define WARLOCK_H
 
-#include "../Unit.h"
+#include "../Spellcaster.h"
 #include "../../observation/IObserver.h"
 
 class Demon;
 
-class Warlock : public Unit, public IObserver  {
+class Warlock : public Spellcaster, public IObserver  {
     private:
         std::list<Demon*> m_demons;
     public:

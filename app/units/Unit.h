@@ -15,7 +15,8 @@ class Unit : public Observable {
             TYPE_UNIT,
             TYPE_SPELLCASTER,
             TYPE_BATTLEMAGE,
-            TYPE_HEALER,
+            TYPE_HEALER_MAGE,
+            TYPE_UNDEAD,
             TYPE_SOLDIER,
             TYPE_WEREWOLF,
             TYPE_WIZARD,
@@ -23,9 +24,10 @@ class Unit : public Observable {
             TYPE_WARLOCK,
             TYPE_NECROMANCER,
             TYPE_VAMPIRE,
-            TYPE_UNDEAD,
             TYPE_ROGUE,
-            TYPE_BERSERKER
+            TYPE_BERSERKER,
+            TYPE_HEALER,
+            TYPE_PRIEST
         };
 
     private:

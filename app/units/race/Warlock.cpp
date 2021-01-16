@@ -3,7 +3,7 @@
 #include "Demon.h"
 #include "Warlock.h"
 
-Warlock::Warlock(const std::string& name) : Unit(name) {
+Warlock::Warlock(const std::string& name) : Spellcaster(name) {
     addUnitType(Unit::TYPE_WARLOCK);
     setState(new DefaultState(this));
 }

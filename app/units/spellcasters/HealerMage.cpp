@@ -1,14 +1,13 @@
-#include "../Spellcaster.h"
 #include "../../spells/Spell.h"
-#include "Healer.h"
+#include "HealerMage.h"
 
-Healer::Healer(const std::string& name) : Spellcaster(name) {
-    addUnitType(Unit::TYPE_HEALER);
+HealerMage::HealerMage(const std::string& name) : Spellcaster(name) {
+    addUnitType(Unit::TYPE_HEALER_MAGE);
 }
 
-Healer::~Healer() {}
+HealerMage::~HealerMage() {}
 
-void Healer::addSpellToBook(Spell& spell) {
+void HealerMage::addSpellToBook(Spell& spell) {
     int spellValue = spell.getValue();
     std::map<std::string, Spell>& sb = getSpellBook();
     

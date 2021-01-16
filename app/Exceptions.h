@@ -15,6 +15,11 @@ class AttackWithNotBattleSpell : public ArmyException {
         virtual const char* what() const throw();
 };
 
+class HealingWithNoHealSpell : public ArmyException {
+    public:
+        virtual const char* what() const throw();
+};
+
 class NoSuchSpellInBook : public ArmyException {
     public:
         virtual const char* what() const throw();
