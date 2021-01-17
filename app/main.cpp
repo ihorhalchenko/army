@@ -33,26 +33,19 @@ int main() {
         Berserker berserker = Berserker("Barry");
         Priest priest = Priest("Ilya");
 
-        std::cout << soldier << std::endl;
-        std::cout << priest << std::endl;
-
-        priest.cast(soldier, "Magic Arrow");
 
         std::cout << soldier << std::endl;
-        std::cout << priest << std::endl;
+        std::cout << rogue << std::endl;
 
-        std::cout << "----------------------------" << std::endl;
+        werewolf.turnIntoWolf();
+        werewolf.turnIntoWolf();
+        werewolf.turnIntoHuman();
+        werewolf.turnIntoWolf();
+
+        std::cout << soldier << std::endl;
+        std::cout << rogue << std::endl;
 
 
-        std::cout << necromancer << std::endl;
-        std::cout << priest << std::endl;
-
-        priest.cast(necromancer, "Magic Arrow");
-
-        std::cout << necromancer << std::endl;
-        std::cout << priest << std::endl;
-
-        std::cout << "----------------------------" << std::endl;
 
 
 

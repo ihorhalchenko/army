@@ -2,7 +2,9 @@
 #include "../takeDamage/DefaultTakeDamage.h"
 #include "BerserkerState.h"
 
-BerserkerState::BerserkerState(Unit* unit) : DefaultState(unit) {}
+BerserkerState::BerserkerState(Unit* unit) : DefaultState(unit) {
+    setName(State::STATE_BERSERKER);
+}
 BerserkerState::~BerserkerState() {}
 
 void BerserkerState::takeDamage(const Damage& dmg) {

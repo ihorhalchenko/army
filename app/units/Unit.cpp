@@ -129,8 +129,7 @@ void Unit::attack(Unit& enemy) {
 void Unit::counterAttack(Unit& enemy) {
     ensureIsAlive();
 
-    std::set<Type> unitTypes = enemy.getUnitType();
-    if ( unitTypes.find(TYPE_ROGUE) != unitTypes.end() ) {
+    if ( enemy.isUnitHasType(TYPE_ROGUE) ) {
         return;
     }
 

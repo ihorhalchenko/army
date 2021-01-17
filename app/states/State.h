@@ -11,7 +11,8 @@ class State {
             STATE_WEREWOLF_HUMAN,
             STATE_WEREWOLF_WOLF,
             STATE_VAMPIRE,
-            STATE_PRIEST
+            STATE_PRIEST,
+            STATE_BERSERKER
         };
 
     private:

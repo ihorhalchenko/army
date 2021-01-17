@@ -6,9 +6,12 @@
 
 WolfState::WolfState(Unit* unit) : WerewolfState(unit) {
     setName(State::STATE_WEREWOLF_WOLF);
-    unit->setHitPointsLimit(unit->getHitPointsLimit() * WOLF_MULTIPLICATOR);
-    unit->setHitPoints(unit->getHitPoints() * WOLF_MULTIPLICATOR);
-    unit->setDamageValue(unit->getDamageValue() * WOLF_MULTIPLICATOR);
+
+    if ( unit->getState()->getName() == State::STATE_WEREWOLF_HUMAN ) {
+        unit->setHitPointsLimit(unit->getHitPointsLimit() * WOLF_MULTIPLICATOR);
+        unit->setHitPoints(unit->getHitPoints() * WOLF_MULTIPLICATOR);
+        unit->setDamageValue(unit->getDamageValue() * WOLF_MULTIPLICATOR);
+    }
 }
 
 WolfState::~WolfState() {}

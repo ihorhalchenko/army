@@ -1,5 +1,5 @@
-#ifndef SPELLS_H
-#define SPELLS_H
+#ifndef SPELL_H
+#define SPELL_H
 
 #include <iostream>
 
@@ -27,4 +27,4 @@ class Spell {
 
 std::ostream& operator<<(std::ostream& out, const Spell& spell);
 
-#endif //SPELLS_H
+#endif //SPELL_H

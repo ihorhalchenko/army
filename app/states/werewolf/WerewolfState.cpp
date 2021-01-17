@@ -15,7 +15,7 @@ void WerewolfState::turnIntoWolf() {
 
 void WerewolfState::turnIntoHuman() {
     Unit* unit = getUnit();
-    getUnit()->setState(new HumanState(unit));
+    unit->setState(new HumanState(unit));
 }
 
 void WerewolfState::transform(Unit* unit) {
