@@ -24,8 +24,10 @@ Spell& Spellcaster::getSpellFromBook(const std::string& spellName) {
 }
 
 void Spellcaster::heal(Unit& patient, const std::string& spellName) {
-    ensureIsAlive();
-
+    if ( isDead() || patient.isUnitHasType(TYPE_BERSERKER)) {
+        return;
+    }
+    
     Spell& spell = getSpellFromBook(spellName);
     if ( spell.getType() != Spell::TYPE_HEALING ) {
         throw HealingWithNoHealSpell();
@@ -35,7 +37,9 @@ void Spellcaster::heal(Unit& patient, const std::string& spellName) {
 }
 
 void Spellcaster::cast(Unit& enemy, const std::string& spellName) {
-    ensureIsAlive();
+    if ( isDead() ) {
+        return;
+    }
 
     Spell& spell = getSpellFromBook(spellName);
     if ( spell.getType() != Spell::TYPE_BATTLE ) {
@@ -53,7 +57,8 @@ void Spellcaster::addSpellToBook(Spell& spell) {
 void Spellcaster::showSpellBook() const {
     std::cout << "Spell book contains spells:" << std::endl;
     for ( std::map<std::string, Spell>::const_iterator it = m_spellBook.begin(); it != m_spellBook.end(); ++it ) {
-        std::cout << it->second << std::endl;
+        std::cout << it->second;
     }
+    std::cout << std::endl;
 }
 

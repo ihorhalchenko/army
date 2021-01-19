@@ -17,4 +17,3 @@ void HealerMage::addSpellToBook(Spell& spell) {
     Spell insertSpell = Spell(spell.getName(), spellValue, spell.getType());
     sb.insert(std::pair<std::string, Spell>(spell.getName(), insertSpell));
 }
-

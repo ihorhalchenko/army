@@ -25,6 +25,7 @@ void VampireState::transform(Unit* unit) {
         throw ForbiddenTransformation();
     }
     
+    unit->addUnitType(Unit::TYPE_UNDEAD);
     unit->addUnitType(Unit::TYPE_VAMPIRE);
     unit->setState(new VampireState(unit));
 }

@@ -1,6 +1,7 @@
 #include "../../macros.h"
 #include "../../units/Unit.h"
 #include "../State.h"
+#include "../../damage/Damage.h"
 #include "../../takeDamage/WolfTakeDamage.h"
 #include "WolfState.h"
 
@@ -10,7 +11,7 @@ WolfState::WolfState(Unit* unit) : WerewolfState(unit) {
     if ( unit->getState()->getName() == State::STATE_WEREWOLF_HUMAN ) {
         unit->setHitPointsLimit(unit->getHitPointsLimit() * WOLF_MULTIPLICATOR);
         unit->setHitPoints(unit->getHitPoints() * WOLF_MULTIPLICATOR);
-        unit->setDamageValue(unit->getDamageValue() * WOLF_MULTIPLICATOR);
+        unit->setDamageValue(unit->getDamage()->getValue() * WOLF_MULTIPLICATOR);
     }
 }
 

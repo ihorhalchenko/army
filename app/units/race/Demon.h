@@ -3,10 +3,10 @@
 
 #include <iostream>
 #include <map>
-#include "../Unit.h"
+#include "Soldier.h"
 #include "../../spells/Spell.h"
 
-class Demon : public Unit {
+class Demon : public Soldier {
     private:
         std::map<std::string, Spell> m_spellBook;
         Spell& getSpellFromBook(const std::string& spellName);

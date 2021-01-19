@@ -6,7 +6,6 @@
 
 Healer::Healer(const std::string& name) : HealerMage(name) {
     addUnitType(Unit::TYPE_HEALER);
-    setState(new DefaultState(this));
     MagicArrow ma = MagicArrow();
     Prayer pr = Prayer(); 
     addSpellToBook(ma);

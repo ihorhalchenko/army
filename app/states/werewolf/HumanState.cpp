@@ -1,6 +1,7 @@
 #include "../../Exceptions.h"
 #include "../../macros.h"
 #include "../../units/Unit.h"
+#include "../../damage/Damage.h"
 #include "../State.h"
 #include "HumanState.h"
 
@@ -12,7 +13,7 @@ HumanState::HumanState(Unit* unit) : WerewolfState(unit) {
 
         unit->setHitPoints(hp);
         unit->setHitPointsLimit(unit->getHitPointsLimit() / WOLF_MULTIPLICATOR);
-        unit->setDamageValue(unit->getDamageValue() / WOLF_MULTIPLICATOR);
+        unit->setDamageValue(unit->getDamage()->getValue() / WOLF_MULTIPLICATOR);
     }
 }
 

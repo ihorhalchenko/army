@@ -19,12 +19,13 @@ Unit::~Unit() {
     delete m_damage;
 }
 
-void Unit::ensureIsAlive() {
-    if ( m_hitPoints == 0 ) {
-       std::cout << "Unit " << this->getName() << " is dead." << std::endl;
-       std::cout << std::endl;
-       //throw UnitIsDead();
+bool Unit::isDead() {
+    if ( m_hitPoints <= 0 ) {
+        std::cout << "Unit " << this->getName() << " is dead. \n" << std::endl;
+        return true;
    }
+   
+   return false;
 }
 
 void Unit::setState(State* state) {
@@ -44,14 +45,6 @@ bool Unit::isUnitHasType(Type unitType) {
         return false;
     }
     return true;
-}
-
-std::set<Unit::Type> Unit::getUnitType() const {
-    return m_unitTypes;
-}
-
-int Unit::getDamageValue() const {
-    return m_damage->getValue();
 }
 
 Damage* Unit::getDamage() const {
@@ -95,7 +88,9 @@ void Unit::setDamageValue(int value) {
 }
 
 void Unit::addHitPoints(int hp) {
-    ensureIsAlive();
+    if ( isDead() ) {
+        return;
+    }
     
     if ( hp < 1 ) {
         return;
@@ -111,7 +106,9 @@ void Unit::addHitPoints(int hp) {
 }
 
 void Unit::reduceHitPoints(int hp) {
-    ensureIsAlive();
+    if ( isDead() ) {
+        return;
+    }
 
     if ( hp >= m_hitPoints ) {
         setHitPoints(0);
@@ -121,15 +118,15 @@ void Unit::reduceHitPoints(int hp) {
 }
 
 void Unit::attack(Unit& enemy) {
-    ensureIsAlive();
+    if ( isDead() ) {
+        return;
+    }
     
     m_state->attack(enemy, *m_damage);
 }
 
 void Unit::counterAttack(Unit& enemy) {
-    ensureIsAlive();
-
-    if ( enemy.isUnitHasType(TYPE_ROGUE) ) {
+    if ( isDead() || enemy.isUnitHasType(TYPE_ROGUE) ) {
         return;
     }
 
@@ -137,33 +134,40 @@ void Unit::counterAttack(Unit& enemy) {
 }
 
 void Unit::takeDamage(const Damage& dmg) {
-    ensureIsAlive();
+    if ( isDead() ) {
+        return;
+    }
 
     m_state->takeDamage(dmg);
 }
 
 void Unit::turnIntoWolf() {
-    ensureIsAlive();
+    if ( isDead() ) {
+        return;
+    }
 
     m_state->turnIntoWolf();
 }
 
 void Unit::turnIntoHuman() {
-    ensureIsAlive();
+    if ( isDead() ) {
+        return;
+    }
 
     m_state->turnIntoHuman();
 }
 
 void Unit::transform(Unit& unit) {
-    ensureIsAlive();
-    unit.ensureIsAlive();
+    if ( isDead() || unit.isDead() ) {
+        return;
+    }
 
     m_state->transform(&unit);
 }
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {
     out << "Name: " << unit.getName() << std::endl;
-    out << "Damage: " << unit.getDamageValue() << std::endl;
+    out << "Damage: " << unit.getDamage()->getValue() << std::endl;
     out << "Hit Points: " << unit.getHitPoints() << std::endl;
     out << "Hit Points Limit: " << unit.getHitPointsLimit() << std::endl;
 

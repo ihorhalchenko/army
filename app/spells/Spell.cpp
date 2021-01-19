@@ -28,6 +28,6 @@ std::string Spell::getStringType() const {
 }
 
 std::ostream& operator<<(std::ostream& out, const Spell& spell) {
-    out << "Name: " << spell.getName() << "; Spell value: " << spell.getValue() << "; Spell type: " << spell.getStringType() << std::endl;
+    out << "Name: " << spell.getName() << "; Spell value: " << spell.getValue() << "; Spell type: " << spell.getStringType() << ";" << std::endl;
     return out;
 }

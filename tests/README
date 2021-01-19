@@ -1,2 +1,0 @@
-to launch tests in VSCode:
-    rm test.exe | make | .\test.exe

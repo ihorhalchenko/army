@@ -5,7 +5,6 @@
 
 Warlock::Warlock(const std::string& name) : Spellcaster(name) {
     addUnitType(Unit::TYPE_WARLOCK);
-    setState(new DefaultState(this));
 }
 
 Warlock::~Warlock() {}

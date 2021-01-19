@@ -4,13 +4,14 @@
 Necromancer::Necromancer(const std::string& name) : Spellcaster(name) {
     addUnitType(Unit::TYPE_UNDEAD);
     addUnitType(Unit::TYPE_NECROMANCER);
-    setState(new DefaultState(this));
 }
 
 Necromancer::~Necromancer() {}
 
 void Necromancer::attack(Unit& enemy) {
-    ensureIsAlive();
+    if ( isDead() ) {
+        return;
+    }
     
     enemy.subscribe(this);
     getState()->attack(enemy, *(getDamage()));
