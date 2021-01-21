@@ -1,8 +1,11 @@
 #ifndef STATE_H
 #define STATE_H
 
+#include <iostream>
+
 class Unit;
 class Damage;
+class Demon;
 
 class State {
     public:
@@ -12,7 +15,9 @@ class State {
             STATE_WEREWOLF_WOLF,
             STATE_VAMPIRE,
             STATE_PRIEST,
-            STATE_BERSERKER
+            STATE_BERSERKER,
+            STATE_NECROMANCER,
+            STATE_WARLOCK
         };
 
     private:
@@ -33,6 +38,7 @@ class State {
         virtual void turnIntoWolf();
         virtual void turnIntoHuman();
         virtual void transform(Unit* unit);
+        virtual Demon callDemon(const std::string& name);
 
         Name getName() const;
 };

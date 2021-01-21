@@ -8,6 +8,7 @@
 
 class State;
 class Damage;
+class Demon;
 
 class Unit : public Observable {
     public:
@@ -37,6 +38,7 @@ class Unit : public Observable {
         std::string m_name;
         State* m_state;
         std::set<Type> m_unitTypes;
+        std::list<Demon*> m_demons;
 
     protected:
         Unit(const std::string& name, int damageValue = UNIT_DAMAGE_VALUE, int hitPoints = UNIT_HIT_POINTS, int hitPointsLimit = UNIT_HIT_POINTS_LIMIT);
@@ -57,6 +59,7 @@ class Unit : public Observable {
         void setDamageValue(int value);
 
         void addUnitType(Type type);
+        void removeUnitType(Type type);
         bool isUnitHasType(Type unitType);
         void addHitPoints(int hp);
         void reduceHitPoints(int hp);
@@ -66,6 +69,9 @@ class Unit : public Observable {
         void turnIntoWolf();
         void turnIntoHuman();
         void transform(Unit& unit);
+        Demon callDemon(const std::string& name);
+        void addDemon(Demon* demon);
+        void removeDemon(Demon* demon);
 };
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit);

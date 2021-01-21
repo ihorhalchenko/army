@@ -1,4 +1,5 @@
 #include "../Exceptions.h"
+#include "../units/race/Demon.h"
 #include "State.h"
 
 State::State(Unit* unit) {
@@ -32,6 +33,10 @@ void State::turnIntoHuman() {
  }
 
  void State::transform(Unit* unit) {
+     throw UnitCantDoThis();
+ }
+
+ Demon State::callDemon(const std::string& name) {
      throw UnitCantDoThis();
  }
 

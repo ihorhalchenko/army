@@ -40,4 +40,9 @@ class ForbiddenTransformation : public ArmyException {
         virtual const char* what() const throw();
 };
 
+class isNotObserver : public ArmyException {
+    public:
+        virtual const char* what() const throw();
+};
+
 #endif //ARMY_EXCEPTIONS_H

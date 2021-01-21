@@ -27,3 +27,7 @@ const char* DemonsLimitIsReached::what() const throw() {
 const char* ForbiddenTransformation::what() const throw() {
     return "Such transformation is forbidden.";
 }
+
+const char* isNotObserver::what() const throw() {
+    return "Is not observer.";
+}

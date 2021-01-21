@@ -23,6 +23,7 @@ void WerewolfState::transform(Unit* unit) {
         throw ForbiddenTransformation();
     }
 
+    unit->removeUnitType(Unit::TYPE_UNDEAD);
     unit->addUnitType(Unit::TYPE_WEREWOLF);
     unit->setState(new HumanState(unit));
 }

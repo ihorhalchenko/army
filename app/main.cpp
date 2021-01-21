@@ -32,8 +32,7 @@ int main() {
         Demon demon1 = warlock.callDemon("demon1");
         Demon demon2 = warlock.callDemon("demon2");
         Demon demon3 = warlock.callDemon("demon3");
-
-        std::cout << "----------------------------" << std::endl;
+        
     } catch(std::exception& e) {
         std::cout << e.what() << std::endl;
     }

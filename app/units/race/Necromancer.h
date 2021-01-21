@@ -9,8 +9,6 @@ class Necromancer : public Spellcaster, public IObserver  {
         Necromancer(const std::string& name);
         virtual ~Necromancer();
 
-        virtual void attack(Unit& enemy);
-
         virtual void update(Unit* unit);
 };
 

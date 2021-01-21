@@ -2,6 +2,7 @@
 #include "../states/State.h"
 #include "../states/DefaultState.h"
 #include "../Exceptions.h"
+#include "race/Demon.h"
 #include "Unit.h"
 
 
@@ -38,6 +39,10 @@ void Unit::setState(State* state) {
 
 void Unit::addUnitType(Unit::Type type) {
     m_unitTypes.insert(type);
+}
+
+void Unit::removeUnitType(Unit::Type type) {
+    m_unitTypes.erase(type);
 }
 
 bool Unit::isUnitHasType(Type unitType) {
@@ -163,6 +168,26 @@ void Unit::transform(Unit& unit) {
     }
 
     m_state->transform(&unit);
+}
+
+Demon Unit::callDemon(const std::string& name) {
+    if ( isDead() ) {
+        throw UnitIsDead();
+    }
+    
+    return m_state->callDemon(name);
+}
+
+void Unit::addDemon(Demon* demon) {
+    if ( m_demons.size() >= WARLOCK_DEMONS_LIMIT ) {
+        throw DemonsLimitIsReached();
+    }
+    
+    m_demons.push_back(demon);
+}
+
+void Unit::removeDemon(Demon* demon) {
+    m_demons.remove(demon);
 }
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {
